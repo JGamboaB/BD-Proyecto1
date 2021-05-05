@@ -21,7 +21,7 @@ USE `MyWorkouts` ;
 -- Table `MyWorkouts`.`wk_paymentStatus`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_paymentStatus` (
-  `paymentStatusid` INT NOT NULL,
+  `paymentStatusid` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`paymentStatusid`))
 ENGINE = InnoDB;
@@ -31,7 +31,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_merchants`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_merchants` (
-  `merchantid` INT NOT NULL,
+  `merchantid` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NOT NULL,
   `url` VARCHAR(255) NOT NULL,
   `enabled` BIT NOT NULL,
@@ -44,7 +44,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_genders`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_genders` (
-  `genderid` TINYINT NOT NULL,
+  `genderid` TINYINT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`genderid`))
 ENGINE = InnoDB;
@@ -54,7 +54,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_users`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_users` (
-  `userid` BIGINT NOT NULL,
+  `userid` BIGINT NOT NULL AUTO_INCREMENT,
   `genderid` TINYINT NOT NULL,
   `email` VARCHAR(250) NOT NULL,
   `username` VARCHAR(20) NOT NULL,
@@ -77,7 +77,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_icons`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_icons` (
-  `iconid` BIGINT NOT NULL,
+  `iconid` BIGINT NOT NULL AUTO_INCREMENT,
   `url` VARCHAR(250) NOT NULL,
   PRIMARY KEY (`iconid`))
 ENGINE = InnoDB;
@@ -87,7 +87,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_plans`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_plans` (
-  `planid` INT NOT NULL,
+  `planid` INT NOT NULL AUTO_INCREMENT,
   `iconid` BIGINT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(250) NOT NULL,
@@ -110,7 +110,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_clients`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_clients` (
-  `clientid` BIGINT NOT NULL,
+  `clientid` BIGINT NOT NULL AUTO_INCREMENT,
   `userid` BIGINT NOT NULL,
   `planid` INT NOT NULL,
   PRIMARY KEY (`clientid`),
@@ -133,7 +133,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_paymentAttemps`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_paymentAttemps` (
-  `paymentAttempid` BIGINT NOT NULL,
+  `paymentAttempid` BIGINT NOT NULL AUTO_INCREMENT,
   `clientid` BIGINT NOT NULL,
   `paymentStatusid` INT NOT NULL,
   `merchantid` INT NOT NULL,
@@ -174,7 +174,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_chatStatus`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_chatStatus` (
-  `chatStatusid` TINYINT NOT NULL,
+  `chatStatusid` TINYINT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(20) NOT NULL,
   PRIMARY KEY (`chatStatusid`))
 ENGINE = InnoDB;
@@ -184,7 +184,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_departments`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_departments` (
-  `departmentid` TINYINT NOT NULL,
+  `departmentid` TINYINT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(30) NOT NULL,
   PRIMARY KEY (`departmentid`))
 ENGINE = InnoDB;
@@ -194,7 +194,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_employee`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_employee` (
-  `employeeid` BIGINT NOT NULL,
+  `employeeid` BIGINT NOT NULL AUTO_INCREMENT,
   `userid` BIGINT NOT NULL,
   `departmentid` TINYINT NOT NULL,
   PRIMARY KEY (`employeeid`),
@@ -217,7 +217,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_chatSessions`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_chatSessions` (
-  `chatSessionid` BIGINT NOT NULL,
+  `chatSessionid` BIGINT NOT NULL AUTO_INCREMENT,
   `chatStatusid` TINYINT NOT NULL,
   `clientid` BIGINT NOT NULL,
   `employeeid` BIGINT NOT NULL,
@@ -249,7 +249,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_messages`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_messages` (
-  `messageid` BIGINT NOT NULL,
+  `messageid` BIGINT NOT NULL AUTO_INCREMENT,
   `chatSessionid` BIGINT NOT NULL,
   `senderid` BIGINT NOT NULL,
   `content` NVARCHAR(250) NOT NULL,
@@ -268,7 +268,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_ticketCategories`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_ticketCategories` (
-  `ticketCategoryid` TINYINT NOT NULL,
+  `ticketCategoryid` TINYINT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(20) NOT NULL,
   PRIMARY KEY (`ticketCategoryid`))
 ENGINE = InnoDB;
@@ -278,7 +278,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_ticketStatus`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_ticketStatus` (
-  `ticketStatusid` TINYINT NOT NULL,
+  `ticketStatusid` TINYINT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(20) NOT NULL,
   PRIMARY KEY (`ticketStatusid`))
 ENGINE = InnoDB;
@@ -288,7 +288,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_ticketPriorities`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_ticketPriorities` (
-  `ticketPriorityid` INT NOT NULL,
+  `ticketPriorityid` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(20) NOT NULL,
   PRIMARY KEY (`ticketPriorityid`))
 ENGINE = InnoDB;
@@ -298,7 +298,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_tickets`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_tickets` (
-  `ticketid` INT NOT NULL,
+  `ticketid` INT NOT NULL AUTO_INCREMENT,
   `description` VARCHAR(200) NOT NULL,
   `date` DATETIME NOT NULL,
   `ticketCategoryid` TINYINT NOT NULL,
@@ -344,7 +344,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_steps`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_steps` (
-  `stepid` INT NOT NULL,
+  `stepid` INT NOT NULL AUTO_INCREMENT,
   `ticketid` INT NOT NULL,
   `employeeid` BIGINT NOT NULL,
   `description` VARCHAR(200) NOT NULL,
@@ -370,7 +370,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_roles`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_roles` (
-  `roleid` INT NOT NULL,
+  `roleid` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`roleid`))
@@ -381,7 +381,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_rolesPerEmployee`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_rolesPerEmployee` (
-  `rolesPerEmployeeid` BIGINT NOT NULL,
+  `rolesPerEmployeeid` BIGINT NOT NULL AUTO_INCREMENT,
   `employeeid` BIGINT NOT NULL,
   `roleid` INT NOT NULL,
   `editedby` VARCHAR(30) NOT NULL,
@@ -409,7 +409,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_applications`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_applications` (
-  `applicationid` INT NOT NULL,
+  `applicationid` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`applicationid`))
@@ -420,7 +420,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_modules`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_modules` (
-  `moduleid` INT NOT NULL,
+  `moduleid` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(20) NOT NULL,
   `applicationid` INT NOT NULL,
   PRIMARY KEY (`moduleid`),
@@ -437,7 +437,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_permissions`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_permissions` (
-  `permissionid` INT NOT NULL,
+  `permissionid` INT NOT NULL AUTO_INCREMENT,
   `moduleid` INT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(100) NOT NULL,
@@ -484,7 +484,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_recurrenceTypes`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_recurrenceTypes` (
-  `recurrenceTypeid` INT NOT NULL,
+  `recurrenceTypeid` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `datepart` DATE NOT NULL,
   `valuetoadd` SMALLINT NOT NULL,
@@ -496,7 +496,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_days`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_days` (
-  `dayid` TINYINT NOT NULL,
+  `dayid` TINYINT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(9) NOT NULL,
   PRIMARY KEY (`dayid`))
 ENGINE = InnoDB;
@@ -506,7 +506,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_workouts`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_workouts` (
-  `workoutid` BIGINT NOT NULL,
+  `workoutid` BIGINT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(30) NOT NULL,
   `deleted` BIT NOT NULL,
   `preset` BIT NOT NULL,
@@ -519,7 +519,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_recurrencePerWorkouts`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_recurrencePerWorkouts` (
-  `recurrencePerWorkoutid` BIGINT NOT NULL,
+  `recurrencePerWorkoutid` BIGINT NOT NULL AUTO_INCREMENT,
   `setTime` TIME NOT NULL,
   `recurrenceTypeid` INT NOT NULL,
   `dayid` TINYINT NOT NULL,
@@ -550,7 +550,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_notifications`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_notifications` (
-  `notificationid` BIGINT NOT NULL,
+  `notificationid` BIGINT NOT NULL AUTO_INCREMENT,
   `message` VARCHAR(100) NOT NULL,
   `clientid` BIGINT NOT NULL,
   `iconid` BIGINT NOT NULL,
@@ -581,7 +581,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_tracking`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_tracking` (
-  `trackingid` BIGINT NOT NULL,
+  `trackingid` BIGINT NOT NULL AUTO_INCREMENT,
   `clientid` BIGINT NOT NULL,
   `height` DOUBLE NULL,
   `weight` DOUBLE NULL,
@@ -602,7 +602,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_pictures`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_pictures` (
-  `pictureid` BIGINT NOT NULL,
+  `pictureid` BIGINT NOT NULL AUTO_INCREMENT,
   `url` VARCHAR(250) NOT NULL,
   `deleted` BIT NOT NULL,
   PRIMARY KEY (`pictureid`))
@@ -613,7 +613,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_picturesPerTracking`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_picturesPerTracking` (
-  `picturePerTrackingid` BIGINT NOT NULL,
+  `picturePerTrackingid` BIGINT NOT NULL AUTO_INCREMENT,
   `trackingid` BIGINT NOT NULL,
   `pictureid` BIGINT NULL,
   PRIMARY KEY (`picturePerTrackingid`),
@@ -636,7 +636,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_categories`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_categories` (
-  `categoryid` TINYINT NOT NULL,
+  `categoryid` TINYINT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`categoryid`))
@@ -647,7 +647,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_exerciseFocus`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_exerciseFocus` (
-  `focusid` TINYINT NOT NULL,
+  `focusid` TINYINT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(20) NOT NULL,
   PRIMARY KEY (`focusid`))
 ENGINE = InnoDB;
@@ -657,7 +657,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_difficultyLevels`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_difficultyLevels` (
-  `difficultyid` TINYINT NOT NULL,
+  `difficultyid` TINYINT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(15) NOT NULL,
   PRIMARY KEY (`difficultyid`))
 ENGINE = InnoDB;
@@ -667,7 +667,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_equipment`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_equipment` (
-  `equipmentid` INT NOT NULL,
+  `equipmentid` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(20) NOT NULL,
   `description` VARCHAR(50) NOT NULL,
   `weight` DECIMAL(5,2) NOT NULL,
@@ -679,7 +679,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_exercises`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_exercises` (
-  `exerciseid` INT NOT NULL,
+  `exerciseid` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `categoryid` TINYINT NOT NULL,
   `focusid` TINYINT NOT NULL,
@@ -722,7 +722,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_picturesPerExercise`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_picturesPerExercise` (
-  `picturePerExerciseid` BIGINT NOT NULL,
+  `picturePerExerciseid` BIGINT NOT NULL AUTO_INCREMENT,
   `pictureid` BIGINT NOT NULL,
   `exerciseid` INT NOT NULL,
   PRIMARY KEY (`picturePerExerciseid`),
@@ -745,7 +745,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_workoutSessions`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_workoutSessions` (
-  `workoutSessionid` BIGINT NOT NULL,
+  `workoutSessionid` BIGINT NOT NULL AUTO_INCREMENT,
   `workoutid` BIGINT NOT NULL,
   `clientid` BIGINT NOT NULL,
   `started` DATETIME NOT NULL,
@@ -770,7 +770,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_exercisesPerWorkout`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_exercisesPerWorkout` (
-  `exercisePerWorkoutid` INT NOT NULL,
+  `exercisePerWorkoutid` INT NOT NULL AUTO_INCREMENT,
   `workoutid` BIGINT NOT NULL,
   `exerciseid` INT NOT NULL,
   `reps` TINYINT NOT NULL,
@@ -796,7 +796,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_exercisesLogs`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_exercisesLogs` (
-  `exerciseLogid` BIGINT NOT NULL,
+  `exerciseLogid` BIGINT NOT NULL AUTO_INCREMENT,
   `timestamp` DATETIME NOT NULL,
   `workoutSessionid` BIGINT NOT NULL,
   `exercisePerWorkoutid` INT NOT NULL,
@@ -823,7 +823,7 @@ ENGINE = InnoDB;
 -- Table `MyWorkouts`.`wk_videos`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_videos` (
-  `videoid` INT NOT NULL,
+  `videoid` INT NOT NULL AUTO_INCREMENT,
   `url` VARCHAR(250) NOT NULL,
   `deleted` BIT NOT NULL,
   PRIMARY KEY (`videoid`))
