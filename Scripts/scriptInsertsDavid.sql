@@ -2,26 +2,28 @@ use MyWorkouts;
 
 INSERT INTO wk_roles (roleid, `name`, description)
 VALUES 
-(1, 'Entrenador', 'Rol encargado de manejar los ejercicios pre cargados y responder
- consultas relacionadas a ejercicios.'),
-(2, 'Servicio al Cliente', 'Rol encargado de asistir usuarios por chat.'),
-(3, 'Contabilidad', 'Rol encargado de la supervisión del movimiento de dinero 
-de la app.'),
-(4, 'Gerente', 'Rol encargado del manejo y supervision general de la app, tiene 
-todos los permisos.');
+(1, 'Trainer', 'Role in charge of handling the preloaded exercises and answering 
+queries related to exercises.'),
+(2, 'Customer Service', 'Role in charge of assisting users by chat.'),
+(3, 'Accounting', 'Role in charge of supervising the movement of money 
+of the app.'),
+(4, 'Manager', 'Role in charge of the management and general supervision of the app, has 
+all permits.');
+
 
 INSERT INTO wk_permissions (permissionid, moduleid, `name`, description, `code`, 
 enabled, deleted)
 VALUES 
-(1, , 'Chat', 'Permiso para usar el chat.', 501, 1, 0),
-(2, , 'Supervisar Chats', 'Permiso para revisar chats de usuarios.', 502, 1, 0),
-(3, , 'Ejercicios Pre Cargados', 'Permiso para editar los ejercicios pre cargados.', 
+(1, 1, 'Chat', '.', 501, 1, 0),
+(2, 1, 'Supervisar Chats', 'Permission to use chat.', 502, 1, 0),
+(3, 1, 'Preloaded Exercises', 'Permission to edit preloaded exercises.', 
 503, 1, 0),
-(4, , 'Transacciones', 'Permiso para ver transacciones de usuarios.', 504, 1, 0),
-(5, , 'Bóveda', 'Permiso para revisar entradas y salidas de dinero de la app.', 
+(4, 1, 'Transactions', 'Permission to view user transactions.', 504, 1, 0),
+(5, 1, 'Vault', 'Permission to review money inflows and outflows from the app.', 
 505, 1, 0),
-(6, , 'Admin', 'Permiso para editar roles, permisos y cuentas de usuarios.', 506, 1, 0),
-(7, , 'Dinero', 'Permiso para manejar el dinero de la app.', 507, 1, 0);
+(6, 1, 'Admin', 'Permission to edit roles, permissions, and user accounts.', 506, 1, 0),
+(7, 1, 'Money', 'Permission to handle the money in the app.', 507, 1, 0);
+
 
 -- Es un historial, por lo que para inciar van como editados por "Managment" con id = 0
 -- Checksum se llena con stored procedures
@@ -40,3 +42,16 @@ VALUES
 (5, 4, 'Managment', 0, 1, NOW(), ' '),
 (6, 4, 'Managment', 0, 1, NOW(), ' '),
 (7, 4, 'Managment', 0, 1, NOW(), ' ');
+
+
+-- Module TEMPORAL para poder usar los permisos, CAMBIAR cuando se pueda
+INSERT INTO wk_modules (moduleid, name, applicationid)
+VALUES
+(1, 'Temporary', 1);
+
+
+-- Por ahora solo tenemos la app principal
+INSERT INTO wk_applications (applicationid, name, description)
+VALUES
+(1, 'My Workout', 'Main app aimed at common users where they can create and follow 
+their own workouts.');
