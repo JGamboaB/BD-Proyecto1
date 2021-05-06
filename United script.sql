@@ -1,24 +1,31 @@
-use MyWorkouts;
+-- Campos de email y username deben ser únicos para users.
+ALTER TABLE wk_users
+	MODIFY username VARCHAR(20) NOT NULL UNIQUE,
+    MODIFY email VARCHAR(250) NOT NULL UNIQUE;
 
---
+-- Datos para wk_days
 INSERT INTO wk_days (`name`)
 VALUES ('Sunday'), ('Monday'), ('Tuesday'),('Wednesday'),('Thursday'),('Friday'),('Saturday');
 
+-- Datos para wk_paymentStatus
 INSERT INTO wk_paymentStatus(name)
 VALUES ('Approved'),('Denied'),('In Transit');
 
+-- Datos para wk_genders
 INSERT INTO wk_genders(name)
 VALUES ('Male'),('Female');
 
+-- Datos para wk_icons
 INSERT INTO wk_icons(url)
 VALUES ('https://static.thenounproject.com/png/247254-200.png');
 
+-- Datos de wk_plans. Planes disponibles para clientes.
 INSERT INTO wk_plans(iconid, name, description, amount, starttime, endtime, enabled, deleted)
 VALUES
 (1, 'Premium', 'With this plan you can have all the benefits of the premium package.', 50.00, NOW(), null, 1, 0),
 (1, 'Regular', 'With this plan you can only have up to two workout rutines.', 0, NOW(), null, 1, 0);
 
--- 
+-- Datos de wk_roles. Roles de empleado
 INSERT INTO wk_roles (roleid, `name`, description)
 VALUES 
 (1, 'Trainer', 'Role in charge of handling the preloaded exercises and answering 
@@ -29,7 +36,7 @@ of the app.'),
 (4, 'Manager', 'Role in charge of the management and general supervision of the app, has 
 all permits.');
 
-
+-- Datos de wk_permissions. Permisos de empleados
 INSERT INTO wk_permissions (permissionid, moduleid, `name`, description, `code`, 
 enabled, deleted)
 VALUES 
@@ -72,7 +79,7 @@ VALUES
 (1, 'My Workout', 'Main app aimed at common users where they can create and follow 
 their own workouts.');
 
---
+
 -- Datos de wk_ticketCategories
 INSERT INTO wk_ticketCategories (name)
 VALUES
@@ -80,6 +87,7 @@ VALUES
 ('Subscription'),
 ('User account'),
 ('Cancelation');
+
 
 -- Datos de wk_ticketStatus
 INSERT INTO wk_ticketStatus (name)
@@ -96,44 +104,54 @@ VALUES
 ('Low'),
 ('Medium'),
 ('High'),
-('Urgent');
+('Critical');
 
 -- Datos de wk_chatStatus
 INSERT INTO wk_chatStatus (name)
 VALUES
 ('Online'),
-('Outside'),
+('Away'),
 ('Occupied'),
-('Disconnected');
+('Offline');
 
--- Datos de wk_departments
+-- Datos de wk_departments. Employees trabajan en departamentos.
 INSERT INTO wk_departments (name)
 VALUES
 ('Development'), ('Customer Service'), ('Marketing'),
 ('Financial Accounting'), ('Human Resources'), ('Management');
 
---
-insert into wk_categories(`name`, `description`)
-values ('Endurance', 'Ability of a given muscle to exert force, consistently and repetitively, over a period of time.'),
+-- Datos para wk_categories. Categorías de wk_exercises
+INSERT INTO wk_categories(`name`, `description`)
+VALUES ('Endurance', 'Ability of a given muscle to exert force, consistently and repetitively, over a period of time.'),
 ('Strength', 'Focus on strength of a specific body part'),
 ('Hypertrophy', 'Increase and growth of muscle cells'),
 ('Cardio', 'Gets your heart rate up and keeps it up for a prolonged period of time.'); 
 
-insert into wk_difficultyLevels(`name`)
-values ('Beginner'), ('Intermediate'), ('Expert');
+-- Datos para wk_difficultyLevels 
+INSERT INTO wk_difficultyLevels(`name`)
+VALUES ('Beginner'), ('Intermediate'), ('Expert');
 
-insert into wk_exerciseFocus(`name`)
-values ('Biceps'), ('Triceps'), ('Lats'), ('Back'), ('Chest'), ('Legs'), ('Thighs'), ('Forearms'), ('Calves'), ('Deltoids'), ('Abs');
+-- Datos para wk_exerciseFocus
+INSERT INTO wk_exerciseFocus(`name`)
+values ('Biceps'), ('Triceps'), 
+('Lats'), ('Back'), 
+('Chest'), ('Legs'), 
+('Thighs'), ('Forearms'), 
+('Calves'), ('Deltoids'), ('Abs');
 
-insert into wk_equipment(`name`,`description`,weight)
-values ('Dumbbells','A normal dumbbell (shape can vary)', 15),
+-- Datos para wk_equipment
+INSERT INTO wk_equipment(`name`,`description`,weight)
+VALUES 
+('Dumbbells','A normal dumbbell (shape can vary)', 15),
 ('Stationary Bike','Exercise bike', 0),
 ('Exercise Ball','Plastic ball made for exercising', 5),
 ('Jump Rope','Plastic rope made for exercising', 1),
 ('Kettlebell', 'Cast iron/steel ball with a handle attached.',15);
 
-insert into wk_exercises(`name`, categoryid, focusid, difficultyid, equipmentid, steps, `description`, recommendedReps, recommendedSets, recommendedDuration)
-values ('Lunges', 4, 7, 1, null, 'Stand with your feet shoulder-width apart and arms down at your sides. 
+-- Datos para wk_exercises
+INSERT INTO wk_exercises(`name`, categoryid, focusid, difficultyid, equipmentid, steps, `description`, recommendedReps, recommendedSets, recommendedDuration)
+VALUES 
+('Lunges', 4, 7, 1, null, 'Stand with your feet shoulder-width apart and arms down at your sides. 
 Take a step forward with your right leg and bend your right knee, stop when your thigh is parallel to the ground. 
 Return to starting position. Repeat with left leg.', 'Move your torso up and down with your legs', 20, 4, null),
 ('Pushups', 1, 11, 1, null, 'Start in a plank position. Core should be tight, shoulders pulled down and back, and neck neutral. 
@@ -167,8 +185,10 @@ Jump again as you return to the starting position. Repeat.', 'Jump and feel like
 ('Plank with Shoulder Taps', 1, 10, 2, null, 'Start in a high plank. Alternate bringing your hand to the opposite shoulder without allowing your torso to twist.', 
 'Planking with one hand at a time.', 20, 3, null);
 
-insert into wk_videos(url,deleted)
-values ('https://thumbs.gfycat.com/RequiredThinAbalone-mobile.mp4',0),
+-- Datos para wk_videos
+INSERT INTO wk_videos(url,deleted)
+VALUES
+('https://thumbs.gfycat.com/RequiredThinAbalone-mobile.mp4',0),
 ('https://thumbs.gfycat.com/FittingIdenticalAtlanticspadefish-mobile.mp4',0),
 ('https://thumbs.gfycat.com/AdvancedBestChrysalis-mobile.mp4',0),
 ('https://thumbs.gfycat.com/CriminalMealyGar-mobile.mp4',0),
@@ -181,11 +201,17 @@ values ('https://thumbs.gfycat.com/RequiredThinAbalone-mobile.mp4',0),
 ('https://youtu.be/9gDfNpzytLo',0),
 ('https://www.youtube.com/watch?v=QOCn3_iOAro&ab_channel=Northeastern',0);
 
-insert into wk_videosPerExercise(videoid, exerciseid)
-values (1,1),(2,2),(3,3),(4,4),(5,5),(6,6),(7,7),(8,8),(9,9),(10,10),(11,11),(12,12);
+-- Datos para wk_videosPerExercise
+INSERT INTO wk_videosPerExercise(videoid, exerciseid)
+VALUES (1,1),(2,2),(3,3),
+(4,4),(5,5),(6,6),
+(7,7),(8,8),(9,9),
+(10,10),(11,11),(12,12);
 
-insert into wk_pictures(url,deleted)
-values ('https://julielohre.com/wp-content/uploads/2018/07/AlternatingLunges-1-1024x760.jpg',0),
+-- Datos para wk_pictures
+INSERT INTO wk_pictures(url,deleted)
+VALUES 
+('https://julielohre.com/wp-content/uploads/2018/07/AlternatingLunges-1-1024x760.jpg',0),
 ('https://cdn.prod.openfit.com/uploads/2017/06/01150749/how-to-get-better-at-push-ups2.jpg',0),
 ('https://www.crossfit.com/wp-content/uploads/2019/04/03111458/Bent-Over-Row-Collage-1024x576.png',0),
 ('https://cdn.prod.openfit.com/uploads/2019/09/05175233/deadlift.jpg',0),
@@ -198,14 +224,16 @@ values ('https://julielohre.com/wp-content/uploads/2018/07/AlternatingLunges-1-1
 ('https://www.researchgate.net/profile/Mohammed-Abou-Elmagd/publication/341734848/figure/fig1/AS:896516470362114@1590757591713/Sample-of-Jumping-Jacks-Exercise-4.png',0),
 ('https://media1.popsugar-assets.com/files/thumbor/UjRu9n3XhNilWLRUd9G86CD0SNo/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2017/06/14/784/n/1922729/4b0aa10159417724bd23c1.78911403_Plank-Shoulder-Tap/i/Plank-Shoulder-Tap.jpg',0);
 
-insert into wk_picturesPerExercise(pictureid, exerciseid)
-values (1,1),(2,2),(3,3),(4,4),(5,5),(6,6),(7,7),(8,8),(9,9),(10,10),(11,11),(12,12);
 
--- Users
-ALTER TABLE wk_users
-	MODIFY username VARCHAR(20) NOT NULL UNIQUE,
-    MODIFY email VARCHAR(250) NOT NULL UNIQUE;
+-- Datos para wk_picturesPerExercise
+INSERT INTO wk_picturesPerExercise(pictureid, exerciseid)
+VALUES (1,1),(2,2),(3,3),
+(4,4),(5,5),(6,6),
+(7,7),(8,8),(9,9),
+(10,10),(11,11),(12,12);
 
+
+-- Datos para wk_users
 INSERT INTO wk_users (genderid, email, username, password, firstname, lastname, birthdate, registeredAt)
 values
 (2, 'calin@hotmail.com', 'shaquille.oatmeal', sha2(concat(email,username,'MySecretPassword123',birthdate),256), 'ADRIANA', 'HERNANDEZ', DATE(FROM_UNIXTIME(RAND() * (63075600 - 978310800) + 1230796800)), date_add(date_add(now(), INTERVAL -1 YEAR), INTERVAL floor(rand()*(9999999-1)+1) SECOND)), 
@@ -228,19 +256,22 @@ values
 (1, 'chapoguzman@gmail.com', 'Avocadorable', sha2(concat(email,username,'ElChapoMUSULOS1',birthdate),256), 'JOAQUIN', 'GUZMAN', DATE(FROM_UNIXTIME(RAND() * (63075600 - 978310800) + 1230796800)), date_add(date_add(now(), INTERVAL -1 YEAR), INTERVAL floor(rand()*(9999999-1)+1) SECOND)),
 (1, 'saby78@bartoletti.com', 'FartinLutherKing', sha2(concat(email,username,'zoey101',birthdate),256), 'SEBASTIAN', 'VEGA', DATE(FROM_UNIXTIME(RAND() * (63075600 - 978310800) + 1230796800)), date_add(date_add(now(), INTERVAL -1 YEAR), INTERVAL floor(rand()*(9999999-1)+1) SECOND));
 
+
+-- Se pueden utilizar los procedimientos de abajo
 INSERT INTO wk_employee (userid, departmentid)
 values (1,1), (2,2), (3,3), (4,4), (5,5), (6,6);
 
+-- Datos para wk_clients
 INSERT INTO wk_clients (userid, planid)
 values (7,2), (8,2), (9,2), (10,2), (11,2), (12,1), (13,1), (14,1), (15,1), (16,1), (17,1), (18,1), (19,1);
 
-/* Por alguna razon no ingresa el firstname, y hay que hacer bien la clave de la contraseña.
+
 -- Procedimiento para agregar nuevo user-empleado
 DROP PROCEDURE IF EXISTS addEmployees;
 delimiter //
 
 CREATE PROCEDURE addEmployees(IN genderid TINYINT, IN emailn VARCHAR(250), IN username VARCHAR(20), 
-IN password VARBINARY(250), IN fistname VARCHAR(45), IN lastname VARCHAR(45), 
+IN password VARBINARY(250), IN firstname VARCHAR(45), IN lastname VARCHAR(45), 
 IN birthdate DATE, IN registeredAt DATETIME, departmentid TINYINT)
 BEGIN
 	DECLARE id BIGINT;
@@ -264,24 +295,12 @@ delimiter ;
 
 
 
-select * from wk_users;
-select * from wk_employee;
--- Prueba
--- --------------------------------------------------------------------
-call addEmployees(2, 'hedwig@att.net', 'HairyPoppins', 
-'MySecretPassword123', 'Timo', 'Werner', CURDATE(), '2020-01-01 00:00:00', 2);
-call addEmployees(1, 'fraservvv@live.com', 'VadKarma', 
-'JoeMama123', 'ALEX', 'JACK', CURDATE(),'2020-01-01 00:00:00', 2);
--- --------------------------------------------------------------------
-
-
- -- =========================
 -- Procedimiento para agregar nuevo user-cliente
 DROP PROCEDURE IF EXISTS addClients;
 delimiter %%
 
 CREATE PROCEDURE addClients(IN genderid TINYINT, IN emailn VARCHAR(250), IN username VARCHAR(20), 
-IN password VARBINARY(250), IN fistname VARCHAR(45), IN lastname VARCHAR(45), 
+IN password VARBINARY(250), IN firstname VARCHAR(45), IN lastname VARCHAR(45), 
 IN birthdate DATE, IN registeredAt DATETIME, planid INT)
 BEGIN
 	DECLARE id BIGINT;
@@ -294,11 +313,23 @@ BEGIN
 
     SET @id = LAST_INSERT_ID();
    
-	-- Inserta datos para crear nuevo empleado
+	-- Inserta datos para crear nuevo cliente
     INSERT INTO wk_clients(userid, planid)
     VALUES (@id, planid);
 
 	SET FOREIGN_KEY_CHECKS=1;
 END %%
 delimiter ;
-*/
+
+-- =========== LEER ==========
+-- Ticket lo crea un Employee después de conversar con un cliente y el employee decidió 
+-- que sí necesita un fix más profundo o algo por el estilo, entonces para crearlo ocuparía 
+-- que los datos en chatSession y Messages tengan sentido con el ticket por crer. 
+-- =========================
+-- Datos para wk_tickets
+INSERT INTO wk_tickets (description, date, ticketCategoryid, ticketStatusid, ticketPriorityid,
+clientid, employeeid)
+VALUES
+('Descripción temporal', CURRENT_TIMESTAMP, 2, 3, 2, 3, 2);
+select * from wk_tickets
+
