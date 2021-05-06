@@ -240,7 +240,6 @@ values (1,1), (2,2), (3,3), (4,4), (5,5), (6,6);
 INSERT INTO wk_clients (userid, planid)
 values (7,2), (8,2), (9,2), (10,2), (11,2), (12,1), (13,1), (14,1), (15,1), (16,1), (17,1), (18,1), (19,1);
 
-
 -- ///////////////////////////////////////////////////////////////////////
 -- Procedimiento para agregar nuevo user-empleado
 DROP PROCEDURE IF EXISTS addEmployees;
@@ -300,11 +299,44 @@ delimiter ;
 -- que sí necesita un fix más profundo o algo por el estilo, entonces para crearlo ocuparía 
 -- que los datos en chatSession y Messages tengan sentido con el ticket por crer. 
 -- =========================
+
 -- Datos para wk_tickets
-INSERT INTO wk_tickets (description, date, ticketCategoryid, ticketStatusid, ticketPriorityid,
-clientid, employeeid)
-VALUES
-('Descripción temporal', CURRENT_TIMESTAMP, 2, 3, 2, 3, 2);
+INSERT INTO wk_tickets (`description`, `date`, ticketCategoryid, ticketStatusid, ticketPriorityid, clientid, employeeid)
+VALUES ('Temporal description', current_timestamp(), 1, 2, 2, 9, 1);
 
--- select * from wk_tickets
+-- ///////////////////////////////////////////////////////////////////////
 
+-- Workouts
+insert into wk_workouts(`name`, preset, creationDate)
+values ('Full body, no equipment', 1, date(NOW())), 
+('My First Workout', 0, date(date_add(NOW(), INTERVAL -floor(rand()*(9999-1)+1) SECOND)));
+
+insert into wk_exercisesPerWorkout (workoutid, exerciseid, sets, reps, timeDuration)
+values (1, 1, 4, 20, null), (1, 2, 4, 10, null), (1, 5, 2, 1, 35), (1, 7, 3, 10, null), (1, 10, 1, 1, '00:01:00'), (1, 11, 2, 30, null), (1, 12, 3, 15, null),
+(2, 3, 3, 15, null), (2, 4, 3, 15, null), (2, 6, 3, 15, null), (2, 8, 4, 10, null), (2, 9, 2, 1, 30), (2, 7, 2, 10, null);
+
+-- Workout Sessions & Exercise logs Examples
+insert into wk_workoutSessions(workoutid, clientid, started, finished)
+values (2, 1, NOW(), date_add(now(), interval 20 minute)),
+(1, 6, date_add(now(), interval 2 day), date_add(date_add(now(), interval 2 day), interval 25 minute));
+
+insert into wk_exercisesLogs(workoutSessionid, exercisePerWorkoutid, `timestamp`, setsLog, repsLog, timeDurationLog)
+values (1, 8, NOW(), 3, 15, null), (1, 9, date_add(NOW(), interval 3 minute), 3, 15, null), (1, 10, date_add(NOW(), interval 6 minute), 3, 15, null), 
+(1, 11, date_add(NOW(), interval 9 minute), 3, 15, null), (1, 12, date_add(NOW(), interval 13 minute), 2, 1, 30), 
+(1, 13, date_add(NOW(), interval 17 minute), 2, 10, null), 
+(2, 1, date_add(now(), interval 2 day), 4, 20, null), (2, 2, date_add(date_add(now(), interval 2 day), interval 3 minute), 4, 10, null),
+(2, 3, date_add(date_add(now(), interval 2 day), interval 6 minute), 1, 5, 30),
+(2, 4, date_add(date_add(now(), interval 2 day), interval 8 minute), 3, 10, null), 
+(2, 5, date_add(date_add(now(), interval 2 day), interval 13 minute), 1, 1, '00:01:00'),
+(2, 6, date_add(date_add(now(), interval 2 day), interval 15 minute), 2, 30, null),
+(2, 7, date_add(date_add(now(), interval 2 day), interval 20 minute), 3, 15, null);
+
+-- Tracking Example
+insert into wk_tracking(clientid, height, weight, BMI, posttime, additionalNotes)
+values (1, 1.70, 50.1, null, date(now()), 'Felt cute, might delete later.');
+
+insert into wk_pictures(url)
+values ('https://cdn.discordapp.com/attachments/606668298192551941/839756108796264458/Untitled-5-5cadf7746eccd__700.png');
+
+insert into wk_picturesPerTracking(trackingid, pictureid)
+values (1,1);
