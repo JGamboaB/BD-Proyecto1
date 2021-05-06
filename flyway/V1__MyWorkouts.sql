@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_merchants` (
   `merchantid` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NOT NULL,
   `url` VARCHAR(255) NOT NULL,
-  `enabled` BIT NOT NULL,
+  `enabled` BIT NOT NULL DEFAULT 1,
   `iconUrl` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`merchantid`))
 ENGINE = InnoDB;
@@ -56,8 +56,8 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_users` (
   `userid` BIGINT NOT NULL AUTO_INCREMENT,
   `genderid` TINYINT NOT NULL,
-  `email` VARCHAR(250) NOT NULL,
-  `username` VARCHAR(20) NOT NULL,
+  `email` VARCHAR(250) NOT NULL UNIQUE,
+  `username` VARCHAR(20) NOT NULL UNIQUE,
   `password` VARBINARY(250) NOT NULL,
   `firstname` VARCHAR(45) NOT NULL,
   `lastname` VARCHAR(45) NOT NULL,
@@ -94,8 +94,8 @@ CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_plans` (
   `amount` DECIMAL(5,2) NOT NULL,
   `starttime` DATETIME NOT NULL,
   `endtime` DATETIME NULL,
-  `enabled` BIT NOT NULL,
-  `deleted` BIT NOT NULL,
+  `enabled` BIT NOT NULL DEFAULT 1,
+  `deleted` BIT NOT NULL DEFAULT 0,
   PRIMARY KEY (`planid`),
   INDEX `fk_wk_plans_wk_icons1_idx` (`iconid` ASC) VISIBLE,
   CONSTRAINT `fk_wk_plans_wk_icons1`
@@ -191,21 +191,21 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `MyWorkouts`.`wk_employee`
+-- Table `MyWorkouts`.`wk_employees`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_employee` (
+CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_employees` (
   `employeeid` BIGINT NOT NULL AUTO_INCREMENT,
   `userid` BIGINT NOT NULL,
   `departmentid` TINYINT NOT NULL,
   PRIMARY KEY (`employeeid`),
-  INDEX `fk_wk_employee_wk_users1_idx` (`userid` ASC) VISIBLE,
-  INDEX `fk_wk_employee_wk_departments1_idx` (`departmentid` ASC) VISIBLE,
-  CONSTRAINT `fk_wk_employee_wk_users1`
+  INDEX `fk_wk_employees_wk_users1_idx` (`userid` ASC) VISIBLE,
+  INDEX `fk_wk_employees_wk_departments1_idx` (`departmentid` ASC) VISIBLE,
+  CONSTRAINT `fk_wk_employees_wk_users1`
     FOREIGN KEY (`userid`)
     REFERENCES `MyWorkouts`.`wk_users` (`userid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_wk_employee_wk_departments1`
+  CONSTRAINT `fk_wk_employees_wk_departments1`
     FOREIGN KEY (`departmentid`)
     REFERENCES `MyWorkouts`.`wk_departments` (`departmentid`)
     ON DELETE NO ACTION
@@ -222,7 +222,7 @@ CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_chatSessions` (
   `clientid` BIGINT NOT NULL,
   `employeeid` BIGINT NOT NULL,
   `started` DATETIME NOT NULL,
-  `deleted` BIT NOT NULL,
+  `deleted` BIT NOT NULL DEFAULT 0,
   PRIMARY KEY (`chatSessionid`),
   INDEX `fk_wk_chatSessions_wk_chatStatus_idx` (`chatStatusid` ASC) VISIBLE,
   INDEX `fk_wk_chatSessions_wk_clients1_idx` (`clientid` ASC) VISIBLE,
@@ -386,7 +386,7 @@ CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_rolesPerEmployee` (
   `roleid` INT NOT NULL,
   `editedby` VARCHAR(30) NOT NULL,
   `editorid` BIGINT NOT NULL,
-  `enabled` BIT NOT NULL,
+  `enabled` BIT NOT NULL DEFAULT 1,
   `lastupdate` DATETIME NOT NULL,
   `checksum` VARBINARY(250) NOT NULL,
   PRIMARY KEY (`rolesPerEmployeeid`),
@@ -442,8 +442,8 @@ CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_permissions` (
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(100) NOT NULL,
   `code` VARCHAR(30) NOT NULL,
-  `enabled` BIT NOT NULL,
-  `deleted` BIT NOT NULL,
+  `enabled` BIT NOT NULL DEFAULT 1,
+  `deleted` BIT NOT NULL DEFAULT 0,
   PRIMARY KEY (`permissionid`),
   INDEX `fk_wk_permissions_wk_modules1_idx` (`moduleid` ASC) VISIBLE,
   CONSTRAINT `fk_wk_permissions_wk_modules1`
@@ -455,24 +455,24 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `MyWorkouts`.`wk_permissonsPerRole`
+-- Table `MyWorkouts`.`wk_permissionsPerRole`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_permissonsPerRole` (
+CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_permissionsPerRole` (
   `permissionid` INT NOT NULL,
   `roleid` INT NOT NULL,
   `editedby` VARCHAR(30) NOT NULL,
   `editorid` BIGINT NOT NULL,
-  `enabled` BIT NOT NULL,
+  `enabled` BIT NOT NULL DEFAULT 1,
   `lastupdate` DATETIME NOT NULL,
   `checksum` VARBINARY(250) NOT NULL,
-  INDEX `fk_wk_permissonsPerRole_wk_permissions1_idx` (`permissionid` ASC) VISIBLE,
-  INDEX `fk_wk_permissonsPerRole_wk_roles1_idx` (`roleid` ASC) VISIBLE,
-  CONSTRAINT `fk_wk_permissonsPerRole_wk_permissions1`
+  INDEX `fk_wk_permissionsPerRole_wk_permissions1_idx` (`permissionid` ASC) VISIBLE,
+  INDEX `fk_wk_permissionsPerRole_wk_roles1_idx` (`roleid` ASC) VISIBLE,
+  CONSTRAINT `fk_wk_permissionsPerRole_wk_permissions1`
     FOREIGN KEY (`permissionid`)
     REFERENCES `MyWorkouts`.`wk_permissions` (`permissionid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_wk_permissonsPerRole_wk_roles1`
+  CONSTRAINT `fk_wk_permissionsPerRole_wk_roles1`
     FOREIGN KEY (`roleid`)
     REFERENCES `MyWorkouts`.`wk_roles` (`roleid`)
     ON DELETE NO ACTION
@@ -508,7 +508,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_workouts` (
   `workoutid` BIGINT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(30) NOT NULL,
-  `deleted` BIT NOT NULL,
+  `deleted` BIT NOT NULL DEFAULT 0,
   `preset` BIT NOT NULL,
   `creationDate` DATE NULL,
   PRIMARY KEY (`workoutid`))
@@ -604,7 +604,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_pictures` (
   `pictureid` BIGINT NOT NULL AUTO_INCREMENT,
   `url` VARCHAR(250) NOT NULL,
-  `deleted` BIT NOT NULL,
+  `deleted` BIT NOT NULL DEFAULT 0,
   PRIMARY KEY (`pictureid`))
 ENGINE = InnoDB;
 
@@ -825,7 +825,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_videos` (
   `videoid` INT NOT NULL AUTO_INCREMENT,
   `url` VARCHAR(250) NOT NULL,
-  `deleted` BIT NOT NULL,
+  `deleted` BIT NOT NULL DEFAULT 0,
   PRIMARY KEY (`videoid`))
 ENGINE = InnoDB;
 
