@@ -521,30 +521,33 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_recurrencePerWorkouts` (
   `recurrencePerWorkoutid` BIGINT NOT NULL AUTO_INCREMENT,
   `setTime` TIME NOT NULL,
-  `recurrenceTypeid` INT NOT NULL,
-  `dayid` TINYINT NOT NULL,
+  `recurrenceTypeid` INT NOT NULL,  
   `workoutid` BIGINT NOT NULL,
   PRIMARY KEY (`recurrencePerWorkoutid`),
   INDEX `fk_wk_recurrencePerWorkouts_wk_recurrenceTypes1_idx` (`recurrenceTypeid` ASC) VISIBLE,
-  INDEX `fk_wk_recurrencePerWorkouts_wk_days1_idx` (`dayid` ASC) VISIBLE,
-  INDEX `fk_wk_recurrencePerWorkouts_wk_workouts1_idx` (`workoutid` ASC) VISIBLE,
   CONSTRAINT `fk_wk_recurrencePerWorkouts_wk_recurrenceTypes1`
     FOREIGN KEY (`recurrenceTypeid`)
     REFERENCES `MyWorkouts`.`wk_recurrenceTypes` (`recurrenceTypeid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_wk_recurrencePerWorkouts_wk_days1`
-    FOREIGN KEY (`dayid`)
-    REFERENCES `MyWorkouts`.`wk_days` (`dayid`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_wk_recurrencePerWorkouts_wk_workouts1`
-    FOREIGN KEY (`workoutid`)
-    REFERENCES `MyWorkouts`.`wk_workouts` (`workoutid`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_daysPerRecurrencePerWorkout` (
+	`dayid` TINYINT NOT NULL,
+    `recurrencePerWorkoutid` BIGINT NOT NULL AUTO_INCREMENT,
+    INDEX `fk_wk_daysPerRecurrencePerWorkouts_wk_days_idx` (`dayid` ASC) VISIBLE,
+    INDEX `fk_wk_daysPerRecurrencePerWorkouts_wk_recurrencePerWorkouts_idx` (`recurrencePerWorkoutid` ASC VISIBLE,
+    CONSTRAINT `fk_wk_daysPerRecurrencePerWorkouts_wk_days`
+    FOREIGN KEY (`dayid`)
+    REFERENCES `MyWorkouts`.`wk_days` (`dayid`)
+	ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+    CONSTRAINT `fk_wk_daysPerRecurrencePerWorkouts_wk_recurrencePerWorkouts`
+    FOREIGN KEY (`recurrencePerWorkoutid`)
+    REFERENCES `MyWorkouts`.`wk_recurrencePerWorkouts` (`recurrencePerWorkoutid`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `MyWorkouts`.`wk_notifications`
