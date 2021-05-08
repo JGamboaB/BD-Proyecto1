@@ -74,47 +74,6 @@ VALUES
 (7, 5, 'Managment', 0, 1, '2020-03-08 13:42:22', sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256));
 
 
--- Es un historial, por lo que para inciar van como editados por "Managment" con id = 0
--- Los empleados de marketing y human resources no estan en contacto con la app, tampoco
--- hay empleados para el rol Coach
-INSERT INTO wk_rolesPerEmployee (employeeid, roleid, editedby, editorid, lastupdate, 
-`checksum`)
-VALUES
-(1, 1, 'Managment', 0, '2020-03-08 13:45:02', sha2(concat(employeeid,roleid,editedby,editorid,lastupdate),256)),
-(2, 2, 'Managment', 0, '2020-03-08 13:45:03', sha2(concat(employeeid,roleid,editedby,editorid,lastupdate),256)),
-(4, 4, 'Managment', 0, '2020-03-08 13:45:04', sha2(concat(employeeid,roleid,editedby,editorid,lastupdate),256)),
-(6, 5, 'Managment', 0, '2020-03-08 13:45:05', sha2(concat(employeeid,roleid,editedby,editorid,lastupdate),256));
-
-
-INSERT INTO wk_chatSessions (chatStatusid, clientid, employeeid, started)
-VALUES
-(4, 3, 2, '2021-01-03 11:10:44'),
-(2, 1, 2, '2021-01-05 10:58:00'),
-(1, 7, 2, '2021-01-06 12:01:32');
-
-
-INSERT INTO wk_messages (chatSessionid, senderid, content, posttime)
-VALUES
-(1, 9, 'Buenos días, hoy intenté hacer el pago para convertirme en premium pero 
-la app me está dando error.', '2021-01-03 11:10:44'),
-(1, 2, 'Hola! Mi nombre es Alejandro, para servirle. ¿Me puede decir cuál es el 
-error que le aparece?', '2021-01-03 11:12:03'),
-(1, 9, 'Hola! Ya arregle el problema, fue que no había puesto la tarjeta xd. Muchas 
-gracias!', '2021-01-03 11:13:38'),
-
-(1, 7, 'Hola, me gustaria hablar con servisio al cliente, es que no se como hacer un 
-workout', '2021-01-05 10:58:00'),
-(1, 2, 'Hola! Mi nombre es Alejandro, para servirle. Para crear un workout, haga click 
-en la opción "Crear Workout" en la sección de workouts.', '2021-01-05 11:00:46'),
-(1, 7, 'gracias', '2021-01-05 13:08:51'),
-
-(1, 13, 'Buenas, ayer ví un anuncio de la app en Instagram y decía que en los Workout 
-van a sacar un work para los tobillos, eso es verdad? No lo encuentro, gracias.', 
-'2021-01-06 12:01:32'),
-(1, 2, 'Hola! Mi nombre es Alejandro, para servirle. En el anuncio decía que se buscan 
-entrenadores para añadir en un futuro ejercicios para los tobillos.', '2021-01-06 13:01:20');
-
-
 -- Datos de wk_ticketCategories
 INSERT INTO wk_ticketCategories (name)
 VALUES
@@ -382,3 +341,64 @@ values ('https://cdn.discordapp.com/attachments/606668298192551941/8397561087962
 
 insert into wk_picturesPerTracking(trackingid, pictureid)
 values (1,1);
+
+-- //////////////////// NEW
+
+-- Es un historial, por lo que para inciar van como editados por "Managment" con id = 0
+-- Los empleados de marketing y human resources no estan en contacto con la app, tampoco
+-- hay empleados para el rol Coach
+INSERT INTO wk_rolesPerEmployee (employeeid, roleid, editedby, editorid, lastupdate, 
+`checksum`)
+VALUES
+(1, 1, 'Managment', 0, '2020-03-08 13:45:02', sha2(concat(employeeid,roleid,editedby,editorid,lastupdate),256)),
+(2, 2, 'Managment', 0, '2020-03-08 13:45:03', sha2(concat(employeeid,roleid,editedby,editorid,lastupdate),256)),
+(4, 4, 'Managment', 0, '2020-03-08 13:45:04', sha2(concat(employeeid,roleid,editedby,editorid,lastupdate),256)),
+(6, 5, 'Managment', 0, '2020-03-08 13:45:05', sha2(concat(employeeid,roleid,editedby,editorid,lastupdate),256));
+
+
+INSERT INTO wk_chatSessions (chatStatusid, clientid, employeeid, started)
+VALUES
+(4, 3, 2, '2021-01-03 11:10:44'),
+(2, 1, 2, '2021-01-05 10:58:00'),
+(1, 7, 2, '2021-01-06 12:01:32');
+
+
+INSERT INTO wk_messages (chatSessionid, senderid, content, posttime)
+VALUES
+(1, 9, 'Buenos días, hoy intenté hacer el pago para convertirme en premium pero 
+la app me está dando error.', '2021-01-03 11:10:44'),
+(1, 2, 'Hola! Mi nombre es Alejandro, para servirle. ¿Me puede decir cuál es el 
+error que le aparece?', '2021-01-03 11:12:03'),
+(1, 9, 'Hola! Ya arregle el problema, fue que no había puesto la tarjeta xd. Muchas 
+gracias!', '2021-01-03 11:13:38'),
+
+(1, 7, 'Hola, me gustaria hablar con servisio al cliente, es que no se como hacer un 
+workout', '2021-01-05 10:58:00'),
+(1, 2, 'Hola! Mi nombre es Alejandro, para servirle. Para crear un workout, haga click 
+en la opción "Crear Workout" en la sección de workouts.', '2021-01-05 11:00:46'),
+(1, 7, 'gracias', '2021-01-05 13:08:51'),
+
+(1, 13, 'Buenas, ayer ví un anuncio de la app en Instagram y decía que en los Workout 
+van a sacar un work para los tobillos, eso es verdad? No lo encuentro, gracias.', 
+'2021-01-06 12:01:32'),
+(1, 2, 'Hola! Mi nombre es Alejandro, para servirle. En el anuncio decía que se buscan 
+entrenadores para añadir en un futuro ejercicios para los tobillos.', '2021-01-06 13:01:20');
+
+-- //////////////////// THIS 2 //////////////////////////////////////////////////////////////////////////////////////
+-- Recurrence Types
+INSERT INTO wk_recurrenceTypes (name, datepart, valuetoadd)
+VALUES ('Weekly', 'DD', 7);
+
+-- Workout Per Recurrence
+ INSERT INTO wk_recurrencePerWorkouts (setTime, recurrenceTypeid, workoutid)
+ VALUES ('15:00:00', 1, 1),
+		('06:30:00', 1, 2);
+        
+-- Days Per Recurrence Per Workout
+INSERT INTO wk_daysPerRecurrencePerWorkout(dayid, recurrencePerWorkoutid)
+VALUES (2, 1), (4, 1), (6, 1),
+	   (2, 2), (3, 2), (4, 2), (5, 2), (6, 2);
+
+
+
+
