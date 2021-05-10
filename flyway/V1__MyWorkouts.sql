@@ -526,14 +526,12 @@ CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_recurrencePerWorkouts` (
   `workoutid` BIGINT NOT NULL,
   PRIMARY KEY (`recurrencePerWorkoutid`),
   INDEX `fk_wk_recurrencePerWorkouts_wk_recurrenceTypes1_idx` (`recurrenceTypeid` ASC) VISIBLE,
-  INDEX `fk_wk_recurrencePerWorkouts_wk_days1_idx` (`dayid` ASC) VISIBLE,
   INDEX `fk_wk_recurrencePerWorkouts_wk_workouts1_idx` (`workoutid` ASC) VISIBLE,
   CONSTRAINT `fk_wk_recurrencePerWorkouts_wk_recurrenceTypes1`
     FOREIGN KEY (`recurrenceTypeid`)
     REFERENCES `MyWorkouts`.`wk_recurrenceTypes` (`recurrenceTypeid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_wk_recurrencePerWorkouts_wk_days1`
   CONSTRAINT `fk_wk_recurrencePerWorkouts_wk_workouts1`
     FOREIGN KEY (`workoutid`)
     REFERENCES `MyWorkouts`.`wk_workouts` (`workoutid`)
