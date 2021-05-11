@@ -26,12 +26,12 @@ VALUES
 -- Datos de wk_roles. Roles de empleado
 INSERT INTO wk_roles (roleid, `name`, description)
 VALUES 
-(1, 'Trainer', 'Role in charge of handling the preloaded exercises and answering 
-queries related to exercises.'),
+(1, 'Development', 'Role in charge of the app maintenance and improvements.'),
 (2, 'Customer Service', 'Role in charge of assisting users by chat.'),
-(3, 'Accounting', 'Role in charge of supervising the movement of money 
-of the app.'),
-(4, 'Manager', 'Role in charge of the management and general supervision of the app, has 
+(3, 'Coach', 'Role in charge of handling the preloaded exercises and answering 
+queries related to exercises.'),
+(4, 'Accounting', 'Role in charge of supervising the movement of money of the app.'),
+(5, 'Manager', 'Role in charge of the management and general supervision of the app, has 
 all permits.');
 
 -- Por ahora solo tenemos la app principal
@@ -47,8 +47,8 @@ VALUES ('Temporary', 1);
 -- Datos de wk_permissions. Permisos de empleados
 INSERT INTO wk_permissions (moduleid, `name`, description, `code`)
 VALUES 
-(1, 'Chat', '.', 501),
-(1, 'Supervise Chats', 'Permission to use chat.', 502),
+(1, 'Chat', 'Permission to use chat.', 501),
+(1, 'Supervise Chats', 'Permission to supervise user chats.', 502),
 (1, 'Preloaded Exercises', 'Permission to edit preloaded exercises.', 503),
 (1, 'Transactions', 'Permission to view user transactions.', 504),
 (1, 'Vault', 'Permission to review money inflows and outflows from the app.', 505),
@@ -59,18 +59,19 @@ VALUES
 -- Es un historial, por lo que para inciar van como editados por "Managment" con id = 0
 INSERT INTO wk_permissionsPerRole (permissionid, roleid, editedby, editorid, enabled, lastupdate, `checksum`)
 VALUES 
-(1, 1, 'Managment', 0, 1, NOW(), sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
-(3, 1, 'Managment', 0, 1, NOW(), sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
-(1, 2, 'Managment', 0, 1, NOW(), sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
-(4, 3, 'Managment', 0, 1, NOW(), sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
-(5, 3, 'Managment', 0, 1, NOW(), sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
-(1, 4, 'Managment', 0, 1, NOW(), sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
-(2, 4, 'Managment', 0, 1, NOW(), sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
-(3, 4, 'Managment', 0, 1, NOW(), sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
-(4, 4, 'Managment', 0, 1, NOW(), sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
-(5, 4, 'Managment', 0, 1, NOW(), sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
-(6, 4, 'Managment', 0, 1, NOW(), sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
-(7, 4, 'Managment', 0, 1, NOW(), sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256));
+(6, 1, 'Managment', 0, 1, '2020-03-08 13:42:10', sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
+(1, 2, 'Managment', 0, 1, '2020-03-08 13:42:11', sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
+(1, 3, 'Managment', 0, 1, '2020-03-08 13:42:12', sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
+(3, 3, 'Managment', 0, 1, '2020-03-08 13:42:13', sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
+(4, 4, 'Managment', 0, 1, '2020-03-08 13:42:14', sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
+(5, 4, 'Managment', 0, 1, '2020-03-08 13:42:15', sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
+(1, 5, 'Managment', 0, 1, '2020-03-08 13:42:16', sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
+(2, 5, 'Managment', 0, 1, '2020-03-08 13:42:17', sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
+(3, 5, 'Managment', 0, 1, '2020-03-08 13:42:18', sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
+(4, 5, 'Managment', 0, 1, '2020-03-08 13:42:19', sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
+(5, 5, 'Managment', 0, 1, '2020-03-08 13:42:20', sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
+(6, 5, 'Managment', 0, 1, '2020-03-08 13:42:21', sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
+(7, 5, 'Managment', 0, 1, '2020-03-08 13:42:22', sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256));
 
 
 -- Datos de wk_ticketCategories
@@ -240,7 +241,6 @@ values (1,1), (2,2), (3,3), (4,4), (5,5), (6,6);
 INSERT INTO wk_clients (userid, planid)
 values (7,2), (8,2), (9,2), (10,2), (11,2), (12,1), (13,1), (14,1), (15,1), (16,1), (17,1), (18,1), (19,1);
 
-
 -- ///////////////////////////////////////////////////////////////////////
 -- Procedimiento para agregar nuevo user-empleado
 DROP PROCEDURE IF EXISTS addEmployees;
@@ -300,11 +300,105 @@ delimiter ;
 -- que sí necesita un fix más profundo o algo por el estilo, entonces para crearlo ocuparía 
 -- que los datos en chatSession y Messages tengan sentido con el ticket por crer. 
 -- =========================
--- Datos para wk_tickets
-INSERT INTO wk_tickets (description, date, ticketCategoryid, ticketStatusid, ticketPriorityid,
-clientid, employeeid)
-VALUES
-('Descripción temporal', CURRENT_TIMESTAMP, 2, 3, 2, 3, 2);
 
--- select * from wk_tickets
+-- Datos para wk_tickets
+INSERT INTO wk_tickets (`description`, `date`, ticketCategoryid, ticketStatusid, ticketPriorityid, clientid, employeeid)
+VALUES ('Temporal description', current_timestamp(), 1, 2, 2, 9, 1);
+
+-- ///////////////////////////////////////////////////////////////////////
+
+-- Workouts
+insert into wk_workouts(`name`, preset, creationDate)
+values ('Full body, no equipment', 1, date(NOW())), 
+('My First Workout', 0, date(date_add(NOW(), INTERVAL -floor(rand()*(9999-1)+1) SECOND)));
+
+insert into wk_exercisesPerWorkout (workoutid, exerciseid, sets, reps, timeDuration)
+values (1, 1, 4, 20, null), (1, 2, 4, 10, null), (1, 5, 2, 1, 35), (1, 7, 3, 10, null), (1, 10, 1, 1, '00:01:00'), (1, 11, 2, 30, null), (1, 12, 3, 15, null),
+(2, 3, 3, 15, null), (2, 4, 3, 15, null), (2, 6, 3, 15, null), (2, 8, 4, 10, null), (2, 9, 2, 1, 30), (2, 7, 2, 10, null);
+
+-- Workout Sessions & Exercise logs Examples
+insert into wk_workoutSessions(workoutid, clientid, started, finished)
+values (2, 1, NOW(), date_add(now(), interval 20 minute)),
+(1, 6, date_add(now(), interval 2 day), date_add(date_add(now(), interval 2 day), interval 25 minute));
+
+insert into wk_exercisesLogs(workoutSessionid, exercisePerWorkoutid, `timestamp`, setsLog, repsLog, timeDurationLog)
+values (1, 8, NOW(), 3, 15, null), (1, 9, date_add(NOW(), interval 3 minute), 3, 15, null), (1, 10, date_add(NOW(), interval 6 minute), 3, 15, null), 
+(1, 11, date_add(NOW(), interval 9 minute), 3, 15, null), (1, 12, date_add(NOW(), interval 13 minute), 2, 1, 30), 
+(1, 13, date_add(NOW(), interval 17 minute), 2, 10, null), 
+(2, 1, date_add(now(), interval 2 day), 4, 20, null), (2, 2, date_add(date_add(now(), interval 2 day), interval 3 minute), 4, 10, null),
+(2, 3, date_add(date_add(now(), interval 2 day), interval 6 minute), 1, 5, 30),
+(2, 4, date_add(date_add(now(), interval 2 day), interval 8 minute), 3, 10, null), 
+(2, 5, date_add(date_add(now(), interval 2 day), interval 13 minute), 1, 1, '00:01:00'),
+(2, 6, date_add(date_add(now(), interval 2 day), interval 15 minute), 2, 30, null),
+(2, 7, date_add(date_add(now(), interval 2 day), interval 20 minute), 3, 15, null);
+
+-- Tracking Example
+insert into wk_tracking(clientid, height, weight, BMI, posttime, additionalNotes)
+values (1, 1.70, 50.1, null, date(now()), 'Felt cute, might delete later.');
+
+insert into wk_pictures(url)
+values ('https://cdn.discordapp.com/attachments/606668298192551941/839756108796264458/Untitled-5-5cadf7746eccd__700.png');
+
+insert into wk_picturesPerTracking(trackingid, pictureid)
+values (1,1);
+
+-- //////////////////// NEW
+
+-- Es un historial, por lo que para inciar van como editados por "Managment" con id = 0
+-- Los empleados de marketing y human resources no estan en contacto con la app, tampoco
+-- hay empleados para el rol Coach
+INSERT INTO wk_rolesPerEmployee (employeeid, roleid, editedby, editorid, lastupdate, 
+`checksum`)
+VALUES
+(1, 1, 'Managment', 0, '2020-03-08 13:45:02', sha2(concat(employeeid,roleid,editedby,editorid,lastupdate),256)),
+(2, 2, 'Managment', 0, '2020-03-08 13:45:03', sha2(concat(employeeid,roleid,editedby,editorid,lastupdate),256)),
+(4, 4, 'Managment', 0, '2020-03-08 13:45:04', sha2(concat(employeeid,roleid,editedby,editorid,lastupdate),256)),
+(6, 5, 'Managment', 0, '2020-03-08 13:45:05', sha2(concat(employeeid,roleid,editedby,editorid,lastupdate),256));
+
+
+INSERT INTO wk_chatSessions (chatStatusid, clientid, employeeid, started)
+VALUES
+(4, 3, 2, '2021-01-03 11:10:44'),
+(2, 1, 2, '2021-01-05 10:58:00'),
+(1, 7, 2, '2021-01-06 12:01:32');
+
+
+INSERT INTO wk_messages (chatSessionid, senderid, content, posttime)
+VALUES
+(1, 9, 'Buenos días, hoy intenté hacer el pago para convertirme en premium pero 
+la app me está dando error.', '2021-01-03 11:10:44'),
+(1, 2, 'Hola! Mi nombre es Alejandro, para servirle. ¿Me puede decir cuál es el 
+error que le aparece?', '2021-01-03 11:12:03'),
+(1, 9, 'Hola! Ya arregle el problema, fue que no había puesto la tarjeta xd. Muchas 
+gracias!', '2021-01-03 11:13:38'),
+
+(1, 7, 'Hola, me gustaria hablar con servisio al cliente, es que no se como hacer un 
+workout', '2021-01-05 10:58:00'),
+(1, 2, 'Hola! Mi nombre es Alejandro, para servirle. Para crear un workout, haga click 
+en la opción "Crear Workout" en la sección de workouts.', '2021-01-05 11:00:46'),
+(1, 7, 'gracias', '2021-01-05 13:08:51'),
+
+(1, 13, 'Buenas, ayer ví un anuncio de la app en Instagram y decía que en los Workout 
+van a sacar un work para los tobillos, eso es verdad? No lo encuentro, gracias.', 
+'2021-01-06 12:01:32'),
+(1, 2, 'Hola! Mi nombre es Alejandro, para servirle. En el anuncio decía que se buscan 
+entrenadores para añadir en un futuro ejercicios para los tobillos.', '2021-01-06 13:01:20');
+
+-- //////////////////// THIS 2 //////////////////////////////////////////////////////////////////////////////////////
+-- Recurrence Types
+INSERT INTO wk_recurrenceTypes (name, datepart, valuetoadd)
+VALUES ('Weekly', 'DD', 7);
+
+-- Workout Per Recurrence
+ INSERT INTO wk_recurrencePerWorkouts (setTime, recurrenceTypeid, workoutid)
+ VALUES ('15:00:00', 1, 1),
+		('06:30:00', 1, 2);
+        
+-- Days Per Recurrence Per Workout
+INSERT INTO wk_daysPerRecurrencePerWorkout(dayid, recurrencePerWorkoutid)
+VALUES (2, 1), (4, 1), (6, 1),
+	   (2, 2), (3, 2), (4, 2), (5, 2), (6, 2);
+
+
+
 

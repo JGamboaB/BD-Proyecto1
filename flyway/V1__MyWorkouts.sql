@@ -226,7 +226,7 @@ CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_chatSessions` (
   PRIMARY KEY (`chatSessionid`),
   INDEX `fk_wk_chatSessions_wk_chatStatus_idx` (`chatStatusid` ASC) VISIBLE,
   INDEX `fk_wk_chatSessions_wk_clients1_idx` (`clientid` ASC) VISIBLE,
-  INDEX `fk_wk_chatSessions_wk_employee1_idx` (`employeeid` ASC) VISIBLE,
+  INDEX `fk_wk_chatSessions_wk_employees1_idx` (`employeeid` ASC) VISIBLE,
   CONSTRAINT `fk_wk_chatSessions_wk_chatStatus`
     FOREIGN KEY (`chatStatusid`)
     REFERENCES `MyWorkouts`.`wk_chatStatus` (`chatStatusid`)
@@ -237,9 +237,9 @@ CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_chatSessions` (
     REFERENCES `MyWorkouts`.`wk_clients` (`clientid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_wk_chatSessions_wk_employee1`
+  CONSTRAINT `fk_wk_chatSessions_wk_employees1`
     FOREIGN KEY (`employeeid`)
-    REFERENCES `MyWorkouts`.`wk_employee` (`employeeid`)
+    REFERENCES `MyWorkouts`.`wk_employees` (`employeeid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -311,7 +311,7 @@ CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_tickets` (
   INDEX `fk_wk_tickets_wk_ticketStatus1_idx` (`ticketStatusid` ASC) VISIBLE,
   INDEX `fk_wk_tickets_wk_ticketPriorities1_idx` (`ticketPriorityid` ASC) VISIBLE,
   INDEX `fk_wk_tickets_wk_clients1_idx` (`clientid` ASC) VISIBLE,
-  INDEX `fk_wk_tickets_wk_employee1_idx` (`employeeid` ASC) VISIBLE,
+  INDEX `fk_wk_tickets_wk_employees1_idx` (`employeeid` ASC) VISIBLE,
   CONSTRAINT `fk_wk_tickets_wk_ticketCategories1`
     FOREIGN KEY (`ticketCategoryid`)
     REFERENCES `MyWorkouts`.`wk_ticketCategories` (`ticketCategoryid`)
@@ -332,9 +332,9 @@ CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_tickets` (
     REFERENCES `MyWorkouts`.`wk_clients` (`clientid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_wk_tickets_wk_employee1`
+  CONSTRAINT `fk_wk_tickets_wk_employees1`
     FOREIGN KEY (`employeeid`)
-    REFERENCES `MyWorkouts`.`wk_employee` (`employeeid`)
+    REFERENCES `MyWorkouts`.`wk_employees` (`employeeid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -352,15 +352,15 @@ CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_steps` (
   `finished` DATETIME NULL,
   PRIMARY KEY (`stepid`),
   INDEX `fk_wk_steps_wk_tickets1_idx` (`ticketid` ASC) VISIBLE,
-  INDEX `fk_wk_steps_wk_employee1_idx` (`employeeid` ASC) VISIBLE,
+  INDEX `fk_wk_steps_wk_employees1_idx` (`employeeid` ASC) VISIBLE,
   CONSTRAINT `fk_wk_steps_wk_tickets1`
     FOREIGN KEY (`ticketid`)
     REFERENCES `MyWorkouts`.`wk_tickets` (`ticketid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_wk_steps_wk_employee1`
+  CONSTRAINT `fk_wk_steps_wk_employees1`
     FOREIGN KEY (`employeeid`)
-    REFERENCES `MyWorkouts`.`wk_employee` (`employeeid`)
+    REFERENCES `MyWorkouts`.`wk_employees` (`employeeid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -390,11 +390,11 @@ CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_rolesPerEmployee` (
   `lastupdate` DATETIME NOT NULL,
   `checksum` VARBINARY(250) NOT NULL,
   PRIMARY KEY (`rolesPerEmployeeid`),
-  INDEX `fk_wk_rolesPerEmployee_wk_employee1_idx` (`employeeid` ASC) VISIBLE,
+  INDEX `fk_wk_rolesPerEmployee_wk_employees1_idx` (`employeeid` ASC) VISIBLE,
   INDEX `fk_wk_rolesPerEmployee_wk_roles1_idx` (`roleid` ASC) VISIBLE,
-  CONSTRAINT `fk_wk_rolesPerEmployee_wk_employee1`
+  CONSTRAINT `fk_wk_rolesPerEmployee_wk_employees1`
     FOREIGN KEY (`employeeid`)
-    REFERENCES `MyWorkouts`.`wk_employee` (`employeeid`)
+    REFERENCES `MyWorkouts`.`wk_employees` (`employeeid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_wk_rolesPerEmployee_wk_roles1`
@@ -486,7 +486,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_recurrenceTypes` (
   `recurrenceTypeid` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
-  `datepart` DATE NOT NULL,
+  `datepart` VARCHAR(4) NOT NULL,
   `valuetoadd` SMALLINT NOT NULL,
   PRIMARY KEY (`recurrenceTypeid`))
 ENGINE = InnoDB;
@@ -515,6 +515,7 @@ CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_workouts` (
 ENGINE = InnoDB;
 
 
+-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 -- -----------------------------------------------------
 -- Table `MyWorkouts`.`wk_recurrencePerWorkouts`
 -- -----------------------------------------------------
@@ -525,13 +526,22 @@ CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_recurrencePerWorkouts` (
   `workoutid` BIGINT NOT NULL,
   PRIMARY KEY (`recurrencePerWorkoutid`),
   INDEX `fk_wk_recurrencePerWorkouts_wk_recurrenceTypes1_idx` (`recurrenceTypeid` ASC) VISIBLE,
+  INDEX `fk_wk_recurrencePerWorkouts_wk_workouts1_idx` (`workoutid` ASC) VISIBLE,
   CONSTRAINT `fk_wk_recurrencePerWorkouts_wk_recurrenceTypes1`
     FOREIGN KEY (`recurrenceTypeid`)
     REFERENCES `MyWorkouts`.`wk_recurrenceTypes` (`recurrenceTypeid`)
     ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_wk_recurrencePerWorkouts_wk_workouts1`
+    FOREIGN KEY (`workoutid`)
+    REFERENCES `MyWorkouts`.`wk_workouts` (`workoutid`)
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `MyWorkouts`.`wk_daysPerRecurrencePerWorkout`
+-- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_daysPerRecurrencePerWorkout` (
 	`dayid` TINYINT NOT NULL,
     `recurrencePerWorkoutid` BIGINT NOT NULL AUTO_INCREMENT,
@@ -548,6 +558,7 @@ CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_daysPerRecurrencePerWorkout` (
       ON DELETE NO ACTION
       ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 -- -----------------------------------------------------
 -- Table `MyWorkouts`.`wk_notifications`
