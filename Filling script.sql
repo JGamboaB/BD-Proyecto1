@@ -316,6 +316,11 @@ insert into wk_exercisesPerWorkout (workoutid, exerciseid, sets, reps, timeDurat
 values (1, 1, 4, 20, null), (1, 2, 4, 10, null), (1, 5, 2, 1, 35), (1, 7, 3, 10, null), (1, 10, 1, 1, '00:01:00'), (1, 11, 2, 30, null), (1, 12, 3, 15, null),
 (2, 3, 3, 15, null), (2, 4, 3, 15, null), (2, 6, 3, 15, null), (2, 8, 4, 10, null), (2, 9, 2, 1, 30), (2, 7, 2, 10, null);
 
+SELECT `Name`, `Steps`, `Video`, execisesPerWorkout.reps AS `Reps`, execisesPerWorkout.sets AS `Sets`, execisesPerWorkout.timeDuration AS `Time Duration`
+    FROM wk_execiseInformation AS exerciseInformation
+    JOIN wk_exercisesPerWorkout AS execisesPerWorkout ON exerciseInformation.workoutid = execisesPerWorkout.workoutid
+    GROUP BY execisesPerWorkout.exerciseid;
+
 -- Workout Sessions & Exercise logs Examples
 insert into wk_workoutSessions(workoutid, clientid, started, finished)
 values (2, 1, NOW(), date_add(now(), interval 20 minute)),
