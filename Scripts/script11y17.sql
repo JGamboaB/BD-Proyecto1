@@ -38,6 +38,31 @@ CREATE PROCEDURE newPermission
     pDepartmentId_e TINYINT
 )
 BEGIN
+	-- ERROR HANDLING
+    DECLARE INVALID_EMAIL INT DEFAULT(52000);
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+	BEGIN
+		GET DIAGNOSTICS CONDITION 1 @err_no = MYSQL_ERRNO, @message = MESSAGE_TEXT;
+     
+        IF (@email = ' ') THEN
+			SET @message = 'Email Vacio - ROLLBACK';
+        ELSE
+
+            SET @message = CONCAT('Internal error: ', @message);
+        END IF;
+        
+        ROLLBACK;
+        
+        RESIGNAL SET MESSAGE_TEXT = @message;
+	END;
+    
+    -- Error si el email es vacio, ' '
+	SELECT pEmail_e INTO @email;
+    IF (@email = ' ') THEN
+		SIGNAL SQLSTATE '45000' SET MYSQL_ERRNO = INVALID_EMAIL;
+    END IF;
+    
+	-- Transaction
 	SET autocommit = 0;
 	START TRANSACTION;
     
@@ -143,7 +168,7 @@ END $$
 DELIMITER ;
 
 -- PRUEBAS --
--- Funciona
+-- COMMIT
 CALL newPermission ('Promotion', 'Permission to promote the app.', 508, 
 'Managment', 0,
 'Marketing', 'Role in charge of making adds and promoting the app.',
@@ -156,11 +181,19 @@ SELECT * FROM wk_roles;
 SELECT * FROM wk_employees;
 SELECT * FROM wk_users;
 
--- Error (Rollback)
--- Error porque 
-CALL newPermission ('Promotion', 'Permission to promote the app.', 508, 
+-- ROLLBACK
+-- Error si el user email es vacio
+CALL newPermission ('Staff Manager', 'Permission to acess the staff section.', 509, 
 'Managment', 0,
-'Marketing', 'Role in charge of making adds and promoting the app.',
+'Human Resources', 'Role in charge of the hire and fire of employees.',
 'Managment', 0,
-1, 'joema@hotmail.com', 'joemam777', 'x_joe_ma_x', 'JOE', 'MARINO', DATE(FROM_UNIXTIME(RAND() * (63075600 - 978310800) + 1230796800)), 
-3);
+1, ' ', 'AlanP2', 'alanCitoPe_2', 'ALAN', 'PEREZ', DATE(FROM_UNIXTIME(RAND() * (63075600 - 978310800) + 1230796800)), 
+5);
+
+-- Error si el user email es repetido (error de sql porque email es UNIQUE)
+CALL newPermission ('Staff Manager', 'Permission to acess the staff section.', 509, 
+'Managment', 0,
+'Human Resources', 'Role in charge of the hire and fire of employees.',
+'Managment', 0,
+1, 'chlim@yahoo.ca', 'AlanP2', 'alanCitoPe_2', 'ALAN', 'PEREZ', DATE(FROM_UNIXTIME(RAND() * (63075600 - 978310800) + 1230796800)), 
+5);
