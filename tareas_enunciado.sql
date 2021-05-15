@@ -433,3 +433,78 @@ INNER JOIN wk_merchants mc ON pA.merchantid = mc.merchantid
 WHERE pA.paymentStatusid <> 1;
 
 
+
+
+-- Punto 17
+SELECT * FROM wk_workoutSessions;
+
+-- Inserts adicionales solo para pruebas
+INSERT INTO wk_workoutSessions(workoutid, clientid, started, finished)
+VALUES 
+(1, 1, '2021-01-15 04:10:57', '2021-12-01 04:30:57'),
+(1, 1, '2021-03-16 04:10:57', '2021-12-01 04:30:57'),
+(1, 1, '2021-02-15 04:10:57', '2021-12-01 04:30:57'),
+(1, 1, '2021-02-16 04:10:57', '2021-12-01 04:30:57'),
+(1, 1, '2021-03-15 04:10:57', '2021-12-01 04:30:57'),
+(1, 1, '2021-03-16 04:10:57', '2021-12-01 04:30:57'),
+(1, 1, '2021-04-15 04:10:57', '2021-12-01 04:30:57'),
+(1, 1, '2021-04-16 04:10:57', '2021-12-01 04:30:57'),
+(1, 1, '2021-04-15 04:10:57', '2021-12-01 04:30:57'),
+(1, 1, '2021-06-16 04:10:57', '2021-12-01 04:30:57'),
+(1, 1, '2021-07-16 04:10:57', '2021-12-01 04:30:57'),
+(1, 1, '2021-07-17 04:10:57', '2021-12-01 04:30:57'),
+(1, 1, '2021-07-18 04:10:57', '2021-12-01 04:30:57'),
+(1, 1, '2021-07-19 04:10:57', '2021-12-01 04:30:57'),
+(1, 1, '2021-08-13 04:10:57', '2021-12-01 04:30:57'),
+(1, 1, '2021-08-14 04:10:57', '2021-12-01 04:30:57'),
+(1, 1, '2021-08-15 04:10:57', '2021-12-01 04:30:57'),
+(1, 1, '2021-08-16 04:10:57', '2021-12-01 04:30:57'),
+(1, 1, '2021-08-17 04:10:57', '2021-12-01 04:30:57'),
+(1, 1, '2021-09-17 04:10:57', '2021-12-01 04:30:57'),
+(1, 1, '2021-10-17 04:10:57', '2021-12-01 04:30:57'),
+(1, 1, '2021-10-17 04:10:57', '2021-12-01 04:30:57'),
+(1, 1, '2021-11-17 04:10:57', '2021-12-01 04:30:57'),
+(1, 1, '2021-12-17 04:10:57', '2021-12-01 04:30:57'),
+(1, 1, '2021-12-17 04:10:57', '2021-12-01 04:30:57'),
+(1, 1, '2021-12-17 04:10:57', '2021-12-01 04:30:57');
+
+
+-- SELECTS SEPARADOS --
+
+-- SELECT MONTH(started) Mes, COUNT(*) Volumen_Bajo FROM wk_workoutSessions
+-- WHERE started >= '2021-09-01' AND started <= '2021-09-30'
+-- GROUP BY MONTH(started) HAVING Volumen_Bajo <= 2
+-- ORDER BY Mes ASC;
+-- SELECT MONTH(started) Mes, COUNT(*) Volumen_Medio FROM wk_workoutSessions
+-- WHERE started >= '2021-09-01' AND started <= '2021-09-30'
+-- GROUP BY MONTH(started) HAVING Volumen_Medio > 2 AND Volumen_Medio <= 4
+-- ORDER BY Mes ASC;
+-- SELECT MONTH(started) Mes, COUNT(*) Volumen_Alto FROM wk_workoutSessions
+-- WHERE started >= '2021-09-01' AND started <= '2021-09-30'
+-- GROUP BY MONTH(started) HAVING Volumen_Alto > 4 AND Volumen_Alto <= 6
+-- ORDER BY Mes ASC;
+
+
+-- UN SOLO SELECT --
+
+SELECT * FROM (
+    SELECT MONTH(started) Mes, 
+    COUNT(*) Volumen_Bajo, 0 Volumen_Medio, 0 Volumen_Alto FROM wk_workoutSessions
+	WHERE started >= '2021-09-01' AND started <= '2021-09-30'
+    GROUP BY MONTH(started) HAVING Volumen_Bajo <= 2
+    
+    UNION
+    
+	SELECT MONTH(started) Mes, 
+    0 Volumen_Bajo, COUNT(*) Volumen_Medio, 0 Volumen_Alto FROM wk_workoutSessions
+    WHERE started >= '2021-09-01' AND started <= '2021-09-30'
+    GROUP BY MONTH(started) HAVING Volumen_Medio > 2 AND Volumen_Medio <= 4
+    
+	UNION
+    
+	SELECT MONTH(started) Mes,
+    0 Volumen_Bajo, 0 Volumen_Medio, COUNT(*) Volumen_Alto FROM wk_workoutSessions
+    WHERE started >= '2021-09-01' AND started <= '2021-09-30'
+	GROUP BY MONTH(started) HAVING Volumen_Alto > 4 AND Volumen_Alto <= 6
+) AS Conteo
+ORDER BY Mes ASC;
