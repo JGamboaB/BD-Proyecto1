@@ -407,6 +407,10 @@ VALUES
 ('BAC', 'https://www.baccredomatic.com/', 1, 'https://www.baccredomatic.com/themes/custom/bac_theme/images/logo-small.png'),
 ('Banco Nacional', 'https://www.bncr.fi.cr/', 1, 'https://www.bncr.fi.cr/_themesdelivery/Banco-NacionalTheme/assets/images/logo.png');
 
+-- Estado adicional en paymentStatus
+INSERT INTO wk_paymentStatus(name)
+VALUES ('Communication Error');
+
 -- Datos para paymentAttemps
 INSERT INTO wk_paymentAttemps(clientid, paymentStatusid, merchantid, posttime, amount, currentSymbol, errorNumber, 
 	merchantTransNumber, description, paymentTimeStamp, computerName, userName, ipAdress, checkSum)
@@ -422,6 +426,4 @@ NOW(), 'MCP', 'YellowSnowman', '208.80.152.2', 69774235),
 (5, 4, 1, NOW(), 5, '%', 0, 1234895, 'Please check your internet connection and try again.',
 NOW(), 'Rasputin', 'BadKarma', '72.247.244.88', 9412567); 
 
--- Estado adicional en paymentStatus
-INSERT INTO wk_paymentStatus(name)
-VALUES ('Communication Error');
+
