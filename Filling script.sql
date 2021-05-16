@@ -316,11 +316,6 @@ insert into wk_exercisesPerWorkout (workoutid, exerciseid, sets, reps, timeDurat
 values (1, 1, 4, 20, null), (1, 2, 4, 10, null), (1, 5, 2, 1, 35), (1, 7, 3, 10, null), (1, 10, 1, 1, '00:01:00'), (1, 11, 2, 30, null), (1, 12, 3, 15, null),
 (2, 3, 3, 15, null), (2, 4, 3, 15, null), (2, 6, 3, 15, null), (2, 8, 4, 10, null), (2, 9, 2, 1, 30), (2, 7, 2, 10, null);
 
-SELECT `Name`, `Steps`, `Video`, execisesPerWorkout.reps AS `Reps`, execisesPerWorkout.sets AS `Sets`, execisesPerWorkout.timeDuration AS `Time Duration`
-    FROM wk_execiseInformation AS exerciseInformation
-    JOIN wk_exercisesPerWorkout AS execisesPerWorkout ON exerciseInformation.workoutid = execisesPerWorkout.workoutid
-    GROUP BY execisesPerWorkout.exerciseid;
-
 -- Workout Sessions & Exercise logs Examples
 insert into wk_workoutSessions(workoutid, clientid, started, finished)
 values (2, 1, NOW(), date_add(now(), interval 20 minute)),
@@ -403,6 +398,33 @@ VALUES ('Weekly', 'DD', 7);
 INSERT INTO wk_daysPerRecurrencePerWorkout(dayid, recurrencePerWorkoutid)
 VALUES (2, 1), (4, 1), (6, 1),
 	   (2, 2), (3, 2), (4, 2), (5, 2), (6, 2);
+       
+       
+-- Datos para Merchants
+INSERT INTO wk_merchants(name, url, enabled, iconUrl)
+VALUES
+('Paypal', 'https://www.paypal.com/', 1, 'https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg'),
+('BAC', 'https://www.baccredomatic.com/', 1, 'https://www.baccredomatic.com/themes/custom/bac_theme/images/logo-small.png'),
+('Banco Nacional', 'https://www.bncr.fi.cr/', 1, 'https://www.bncr.fi.cr/_themesdelivery/Banco-NacionalTheme/assets/images/logo.png');
+
+-- Datos para paymentAttemps
+INSERT INTO wk_paymentAttemps(clientid, paymentStatusid, merchantid, posttime, amount, currentSymbol, errorNumber, 
+	merchantTransNumber, description, paymentTimeStamp, computerName, userName, ipAdress, checkSum)
+VALUES
+(1, 1, 1, NOW(), 5, '$', 0, 426895983, 'Payment Completed Succesfully.', NOW(), 'DeepThought', 
+'saquille.oatmeal', '209.85.231.104', 82582695),
+(2, 2, 2, NOW(), 5,'$', 0, 48494948, 'The transaction was declined due to insufficient funds.',
+NOW(), 'Cerebro', 'HairyPoppins', '207.46.170.123', 47458455),
+(3, 2, 3, NOW(), 5, '$', 0, 33658595, 'Your card was declined, in order to resolve the issue, please contact your bank,',
+NOW(), 'Duotronics', 'cute.as.ducks', '66.220.149.25', 78955182),
+(4, 2, 3, NOW(), 5, '$', 0, 2547965, 'Your credit card is expaired, please update your card.', 
+NOW(), 'MCP', 'YellowSnowman', '208.80.152.2', 69774235),
+(5, 4, 1, NOW(), 5, '%', 0, 1234895, 'Please check your internet connection and try again.',
+NOW(), 'Rasputin', 'BadKarma', '72.247.244.88', 9412567); 
+
+-- Estado adicional en paymentStatus
+INSERT INTO wk_paymentStatus(name)
+VALUES ('Communication Error');
 
 
 
