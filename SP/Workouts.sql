@@ -31,4 +31,11 @@ BEGIN
     
 END$$
 
+DELIMITER $$
+
+CREATE PROCEDURE `wk_workoutsPrueba`()
+BEGIN
+
+	SELECT `name` FROM wk_workouts;
     
+END$$

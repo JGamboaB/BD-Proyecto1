@@ -1,5 +1,6 @@
 import * as express from 'express';
 import { Logger } from '../common';
+import { chatsrouter } from './chatsrouter';
 
 class Routes {
 
@@ -19,8 +20,8 @@ class Routes {
     }
 
     private routes(): void {
-     //   this.logger.use('/esta', estaruta);
-     this.logger.info("Se ha usado esta ruta");
+        this.express.use('/chats', chatsrouter);
+        this.logger.info("Se ha usado esta ruta");
     }
 }
 
