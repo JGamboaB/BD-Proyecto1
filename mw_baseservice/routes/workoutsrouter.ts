@@ -1,7 +1,6 @@
 import * as express from 'express'
-import { stringify } from 'querystring';
 import { Logger } from '../common'
-import { ChatsController } from '../controllers/chatscontroller'
+import { WorkoutsController } from '../controllers/workoutscontroller'
 
 const app = express();
 const log = new Logger();
@@ -15,7 +14,7 @@ app.get("/:username", (req, res) => {
     var paramList:string[];
     paramList = [sliced];
 
-    ChatsController.getInstance().getChatsOfACostumer("wk_consultChats", paramList)
+    WorkoutsController.getInstance().getWorkoutsOfACostumer("wk_consultWorkoutsPerClient", paramList)
     .then((data)=>{
         res.json(data);
     })
@@ -23,7 +22,6 @@ app.get("/:username", (req, res) => {
         log.error(err);
         return "";
     });
-
 });
 
-export { app as chatsrouter };
+export { app as workoutsrouter };

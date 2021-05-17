@@ -14,9 +14,8 @@ var MySQLRepo = /** @class */ (function () {
             database: 'MyWorkouts'
         });
     };
-    MySQLRepo.prototype.callStoredProcedure = function (username) {
-        console.log(username);
-        var result = this.connection.promise().query("CALL wk_consultChats(?)", [username]);
+    MySQLRepo.prototype.callStoredProcedure = function (pStoredProcedure, pParamList) {
+        var result = this.connection.promise().query("CALL " + pStoredProcedure + "(?)", pParamList);
         return result;
     };
     return MySQLRepo;

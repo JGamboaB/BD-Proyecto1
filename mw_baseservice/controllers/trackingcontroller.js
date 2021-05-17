@@ -1,10 +1,10 @@
 "use strict";
 exports.__esModule = true;
-exports.ChatsController = void 0;
+exports.TrackingController = void 0;
 var mysqlrepository_1 = require("../repositories/mysqlrepository");
 var common_1 = require("../common");
-var ChatsController = /** @class */ (function () {
-    function ChatsController() {
+var TrackingController = /** @class */ (function () {
+    function TrackingController() {
         this.log = new common_1.Logger();
         try {
         }
@@ -12,16 +12,16 @@ var ChatsController = /** @class */ (function () {
             this.log.error(e);
         }
     }
-    ChatsController.getInstance = function () {
+    TrackingController.getInstance = function () {
         if (!this.instance) {
-            this.instance = new ChatsController();
+            this.instance = new TrackingController();
         }
         return this.instance;
     };
-    ChatsController.prototype.getChatsOfACostumer = function (pStoredProcedure, pParamList) {
+    TrackingController.prototype.getTrackingOfACostumer = function (pStoredProcedure, pParamList) {
         var sqlrepo = new mysqlrepository_1.MySQLRepo();
         return sqlrepo.callStoredProcedure(pStoredProcedure, pParamList);
     };
-    return ChatsController;
+    return TrackingController;
 }());
-exports.ChatsController = ChatsController;
+exports.TrackingController = TrackingController;

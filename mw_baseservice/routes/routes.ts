@@ -1,6 +1,9 @@
 import * as express from 'express';
 import { Logger } from '../common';
 import { chatsrouter } from './chatsrouter';
+import { trackingrouter } from './trackingrouter';
+import { workoutsrouter } from './workoutsrouter';
+import { ticketsrouter } from './ticketsrouter';
 
 class Routes {
 
@@ -21,6 +24,9 @@ class Routes {
 
     private routes(): void {
         this.express.use('/chats', chatsrouter);
+        this.express.use('/workouts', workoutsrouter);
+        this.express.use('/tracking', trackingrouter);
+        this.express.use('/tickets', ticketsrouter);
         this.logger.info("Se ha usado esta ruta");
     }
 }

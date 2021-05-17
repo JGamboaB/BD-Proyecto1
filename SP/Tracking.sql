@@ -1,9 +1,9 @@
-DELIMITER $$
 DROP PROCEDURE `wk_consultTrackings`;
+DELIMITER $$
 
 CREATE PROCEDURE `wk_consultTrackings`
 (
-	IN pUserName BIGINT
+	IN pUserName VARCHAR(20)
 )
 BEGIN
 	SET @userid = 0;
@@ -11,8 +11,8 @@ BEGIN
     SELECT IFNULL(userid, @userid) INTO @userid FROM wk_users WHERE TRIM(`username`)=pUserName;
     
 	SELECT height AS `Height`, weight AS `Weight`, IFNULL(BMI, 'Not added') AS `BMI`, posttime AS `Date`
-    FROM wk_trackings
-    WHERE clientid = pUserId
+    FROM wk_tracking
+    WHERE clientid = @userid
     ORDER BY posttime;
     
 END$$

@@ -13,6 +13,7 @@ BEGIN
 	FROM wk_workoutSessions AS workoutSessions
 	JOIN wk_workouts AS workouts ON workoutSessions.workoutid = workouts.workoutid
 	JOIN wk_clients AS clients ON workoutSessions.clientid = clients.clientid
+    WHERE workoutSessions.clientid = @userid
 	GROUP BY workoutSessions.workoutid;
     
 END$$
@@ -32,10 +33,3 @@ BEGIN
 END$$
 
 DELIMITER $$
-
-CREATE PROCEDURE `wk_workoutsPrueba`()
-BEGIN
-
-	SELECT `name` FROM wk_workouts;
-    
-END$$

@@ -1,9 +1,9 @@
 import { MySQLRepo } from '../repositories/mysqlrepository'
 import { Logger } from '../common'
 
-export class ChatsController
+export class WorkoutsController
 {
-    private static instance: ChatsController;
+    private static instance: WorkoutsController;
     private log: Logger;
 
     private constructor()
@@ -17,16 +17,16 @@ export class ChatsController
         }
     }
 
-    public static getInstance() : ChatsController
+    public static getInstance() : WorkoutsController
     {
         if (!this.instance)
         {
-            this.instance = new ChatsController();
+            this.instance = new WorkoutsController();
         }
         return this.instance;
     }
 
-    public getChatsOfACostumer(pStoredProcedure: string, pParamList: Array<any>) : Promise<Response>
+    public getWorkoutsOfACostumer(pStoredProcedure: string, pParamList: Array<any>) : Promise<Response>
     {
         const sqlrepo = new MySQLRepo();
         return sqlrepo.callStoredProcedure(pStoredProcedure, pParamList);

@@ -25,10 +25,9 @@ export class MySQLRepo {
           });
     }
 
-    public callStoredProcedure(username: string) : Promise<Response>
+    public callStoredProcedure(pStoredProcedure: string, pParamList: Array<any>) : Promise<Response>
     {
-        console.log(username);
-        const result = this.connection.promise().query("CALL wk_consultChats(?)", [username])
+        const result = this.connection.promise().query("CALL " + pStoredProcedure + "(?)", pParamList)
         return result;
     }
 }

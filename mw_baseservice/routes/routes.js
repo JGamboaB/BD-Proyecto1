@@ -3,6 +3,9 @@ exports.__esModule = true;
 var express = require("express");
 var common_1 = require("../common");
 var chatsrouter_1 = require("./chatsrouter");
+var trackingrouter_1 = require("./trackingrouter");
+var workoutsrouter_1 = require("./workoutsrouter");
+var ticketsrouter_1 = require("./ticketsrouter");
 var Routes = /** @class */ (function () {
     function Routes() {
         this.express = express();
@@ -16,6 +19,9 @@ var Routes = /** @class */ (function () {
     };
     Routes.prototype.routes = function () {
         this.express.use('/chats', chatsrouter_1.chatsrouter);
+        this.express.use('/workouts', workoutsrouter_1.workoutsrouter);
+        this.express.use('/tracking', trackingrouter_1.trackingrouter);
+        this.express.use('/tickets', ticketsrouter_1.ticketsrouter);
         this.logger.info("Se ha usado esta ruta");
     };
     return Routes;
