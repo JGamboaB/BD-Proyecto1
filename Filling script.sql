@@ -372,16 +372,16 @@ error que le aparece?', '2021-01-03 11:12:03'),
 (1, 9, 'Hola! Ya arregle el problema, fue que no había puesto la tarjeta xd. Muchas 
 gracias!', '2021-01-03 11:13:38'),
 
-(1, 7, 'Hola, me gustaria hablar con servisio al cliente, es que no se como hacer un 
+(2, 7, 'Hola, me gustaria hablar con servisio al cliente, es que no se como hacer un 
 workout', '2021-01-05 10:58:00'),
-(1, 2, 'Hola! Mi nombre es Alejandro, para servirle. Para crear un workout, haga click 
+(2, 2, 'Hola! Mi nombre es Alejandro, para servirle. Para crear un workout, haga click 
 en la opción "Crear Workout" en la sección de workouts.', '2021-01-05 11:00:46'),
-(1, 7, 'gracias', '2021-01-05 13:08:51'),
+(2, 7, 'gracias', '2021-01-05 13:08:51'),
 
-(1, 13, 'Buenas, ayer ví un anuncio de la app en Instagram y decía que en los Workout 
+(3, 13, 'Buenas, ayer ví un anuncio de la app en Instagram y decía que en los Workout 
 van a sacar un work para los tobillos, eso es verdad? No lo encuentro, gracias.', 
 '2021-01-06 12:01:32'),
-(1, 2, 'Hola! Mi nombre es Alejandro, para servirle. En el anuncio decía que se buscan 
+(3, 2, 'Hola! Mi nombre es Alejandro, para servirle. En el anuncio decía que se buscan 
 entrenadores para añadir en un futuro ejercicios para los tobillos.', '2021-01-06 13:01:20');
 
 -- //////////////////// THIS 2 //////////////////////////////////////////////////////////////////////////////////////
@@ -427,5 +427,30 @@ INSERT INTO wk_paymentStatus(name)
 VALUES ('Communication Error');
 
 
+-- Datos para Merchants
+INSERT INTO wk_merchants(name, url, enabled, iconUrl)
+VALUES
+('Paypal', 'https://www.paypal.com/', 1, 'https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg'),
+('BAC', 'https://www.baccredomatic.com/', 1, 'https://www.baccredomatic.com/themes/custom/bac_theme/images/logo-small.png'),
+('Banco Nacional', 'https://www.bncr.fi.cr/', 1, 'https://www.bncr.fi.cr/_themesdelivery/Banco-NacionalTheme/assets/images/logo.png');
+
+-- Estado adicional en paymentStatus
+INSERT INTO wk_paymentStatus(name)
+VALUES ('Communication Error');
+
+-- Datos para paymentAttemps
+INSERT INTO wk_paymentAttemps(clientid, paymentStatusid, merchantid, posttime, amount, currentSymbol, errorNumber, 
+	merchantTransNumber, description, paymentTimeStamp, computerName, userName, ipAdress, checkSum)
+VALUES
+(1, 1, 1, NOW(), 5, '$', 0, 426895983, 'Payment Completed Succesfully.', NOW(), 'DeepThought', 
+'saquille.oatmeal', '209.85.231.104', 82582695),
+(2, 2, 2, NOW(), 5,'$', 0, 48494948, 'The transaction was declined due to insufficient funds.',
+NOW(), 'Cerebro', 'HairyPoppins', '207.46.170.123', 47458455),
+(3, 2, 3, NOW(), 5, '$', 0, 33658595, 'Your card was declined, in order to resolve the issue, please contact your bank,',
+NOW(), 'Duotronics', 'cute.as.ducks', '66.220.149.25', 78955182),
+(4, 2, 3, NOW(), 5, '$', 0, 2547965, 'Your credit card is expaired, please update your card.', 
+NOW(), 'MCP', 'YellowSnowman', '208.80.152.2', 69774235),
+(5, 4, 1, NOW(), 5, '%', 0, 1234895, 'Please check your internet connection and try again.',
+NOW(), 'Rasputin', 'BadKarma', '72.247.244.88', 9412567); 
 
 
