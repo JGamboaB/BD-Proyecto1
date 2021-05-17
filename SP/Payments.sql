@@ -9,8 +9,4 @@ BEGIN
     
     SELECT IFNULL(userid, @userid) INTO @userid FROM wk_users WHERE TRIM(`username`)=pClientUserName;
     
-    
-    
 END$$
-
-CREATE

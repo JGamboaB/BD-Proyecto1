@@ -1,4 +1,4 @@
-DROP PROCEDURE `wk_consultTrackings`;
+DROP PROCEDURE if exists `wk_consultTrackings`;
 DELIMITER $$
 
 CREATE PROCEDURE `wk_consultTrackings`
