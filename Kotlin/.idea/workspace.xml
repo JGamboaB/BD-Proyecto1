@@ -52,7 +52,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../BD-Proyecto1" />
   </component>
   <component name="ProjectId" id="1sgPoDioorTUWGRZZLd8mLkDiwG" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -63,6 +63,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -154,34 +155,39 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/.." />
+    </ignored-roots>
+  </component>
   <component name="WindowStateProjectService">
     <state x="1711" y="259" key="#com.intellij.ide.util.MemberChooser" timestamp="1621294933503">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
     <state x="1711" y="259" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1080@0.0.2560.1080" timestamp="1621294933503" />
-    <state x="1060" y="294" key="FileChooserDialogImpl" timestamp="1621303305250">
+    <state x="1373" y="100" width="1094" height="880" key="AVDManager" timestamp="1621375292901">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
-    <state x="1060" y="294" key="FileChooserDialogImpl/0.0.2560.1080@0.0.2560.1080" timestamp="1621303305250" />
-    <state width="1234" height="252" key="GridCell.Tab.0.bottom" timestamp="1621301738521">
+    <state x="1373" y="100" width="1094" height="880" key="AVDManager/0.0.2560.1080@0.0.2560.1080" timestamp="1621375292901" />
+    <state width="1234" height="291" key="GridCell.Tab.0.bottom" timestamp="1621375156939">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
-    <state width="1234" height="252" key="GridCell.Tab.0.bottom/0.0.2560.1080@0.0.2560.1080" timestamp="1621301738521" />
-    <state width="1234" height="252" key="GridCell.Tab.0.center" timestamp="1621301738521">
+    <state width="1234" height="291" key="GridCell.Tab.0.bottom/0.0.2560.1080@0.0.2560.1080" timestamp="1621375156939" />
+    <state width="1234" height="291" key="GridCell.Tab.0.center" timestamp="1621375156939">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
-    <state width="1234" height="252" key="GridCell.Tab.0.center/0.0.2560.1080@0.0.2560.1080" timestamp="1621301738521" />
-    <state width="1234" height="252" key="GridCell.Tab.0.left" timestamp="1621301738520">
+    <state width="1234" height="291" key="GridCell.Tab.0.center/0.0.2560.1080@0.0.2560.1080" timestamp="1621375156939" />
+    <state width="1234" height="291" key="GridCell.Tab.0.left" timestamp="1621375156939">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
-    <state width="1234" height="252" key="GridCell.Tab.0.left/0.0.2560.1080@0.0.2560.1080" timestamp="1621301738520" />
-    <state width="1234" height="252" key="GridCell.Tab.0.right" timestamp="1621301738521">
+    <state width="1234" height="291" key="GridCell.Tab.0.left/0.0.2560.1080@0.0.2560.1080" timestamp="1621375156939" />
+    <state width="1234" height="291" key="GridCell.Tab.0.right" timestamp="1621375156939">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
-    <state width="1234" height="252" key="GridCell.Tab.0.right/0.0.2560.1080@0.0.2560.1080" timestamp="1621301738521" />
-    <state x="953" y="244" width="837" height="592" key="NewModule_or_Project.wizard" timestamp="1621303322296">
+    <state width="1234" height="291" key="GridCell.Tab.0.right/0.0.2560.1080@0.0.2560.1080" timestamp="1621375156939" />
+    <state x="781" y="184" key="SettingsEditor" timestamp="1621373518455">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
-    <state x="953" y="244" width="837" height="592" key="NewModule_or_Project.wizard/0.0.2560.1080@0.0.2560.1080" timestamp="1621303322296" />
+    <state x="781" y="184" key="SettingsEditor/0.0.2560.1080@0.0.2560.1080" timestamp="1621373518455" />
   </component>
 </project>

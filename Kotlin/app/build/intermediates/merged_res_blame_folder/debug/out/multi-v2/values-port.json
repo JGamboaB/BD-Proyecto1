@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\david\\Desktop\\Tareas David\\TEC\\Semestre 3\\Base de Datos I\\Proyectos\\Proyecto 1\\BD-Proyecto1\\Kotlin\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-port\\values-port.xml",
+            "outputFile": "C:\\Users\\david\\Desktop\\Tareas David\\TEC\\Semestre 3\\Base de Datos I\\Proyectos\\Proyecto 1\\modelos\\Kotlin\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-port\\values-port.xml",
             "map": [
                 {
                     "source": "C:\\Users\\david\\.gradle\\caches\\transforms-2\\files-2.1\\e4765c066f5f7ad55cd6fdfe71873767\\appcompat-1.2.0\\res\\values-port\\values-port.xml",

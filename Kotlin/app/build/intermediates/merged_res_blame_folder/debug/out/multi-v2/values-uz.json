@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\david\\Desktop\\Tareas David\\TEC\\Semestre 3\\Base de Datos I\\Proyectos\\Proyecto 1\\BD-Proyecto1\\Kotlin\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-uz\\values-uz.xml",
+            "outputFile": "C:\\Users\\david\\Desktop\\Tareas David\\TEC\\Semestre 3\\Base de Datos I\\Proyectos\\Proyecto 1\\modelos\\Kotlin\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-uz\\values-uz.xml",
             "map": [
                 {
                     "source": "C:\\Users\\david\\.gradle\\caches\\transforms-2\\files-2.1\\1ed3f29f3755b7563c1d2c5006fb6d81\\core-1.3.2\\res\\values-uz\\values-uz.xml",
