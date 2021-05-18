@@ -398,7 +398,6 @@ VALUES ('Weekly', 'DD', 7);
 INSERT INTO wk_daysPerRecurrencePerWorkout(dayid, recurrencePerWorkoutid)
 VALUES (2, 1), (4, 1), (6, 1),
 	   (2, 2), (3, 2), (4, 2), (5, 2), (6, 2);
-       
 -- Datos para Merchants
 INSERT INTO wk_merchants(name, url, enabled, iconUrl)
 VALUES

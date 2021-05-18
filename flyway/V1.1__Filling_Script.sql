@@ -26,12 +26,12 @@ VALUES
 -- Datos de wk_roles. Roles de empleado
 INSERT INTO wk_roles (roleid, `name`, description)
 VALUES 
-(1, 'Trainer', 'Role in charge of handling the preloaded exercises and answering 
-queries related to exercises.'),
+(1, 'Development', 'Role in charge of the app maintenance and improvements.'),
 (2, 'Customer Service', 'Role in charge of assisting users by chat.'),
-(3, 'Accounting', 'Role in charge of supervising the movement of money 
-of the app.'),
-(4, 'Manager', 'Role in charge of the management and general supervision of the app, has 
+(3, 'Coach', 'Role in charge of handling the preloaded exercises and answering 
+queries related to exercises.'),
+(4, 'Accounting', 'Role in charge of supervising the movement of money of the app.'),
+(5, 'Manager', 'Role in charge of the management and general supervision of the app, has 
 all permits.');
 
 -- Por ahora solo tenemos la app principal
@@ -47,8 +47,8 @@ VALUES ('Temporary', 1);
 -- Datos de wk_permissions. Permisos de empleados
 INSERT INTO wk_permissions (moduleid, `name`, description, `code`)
 VALUES 
-(1, 'Chat', '.', 501),
-(1, 'Supervise Chats', 'Permission to use chat.', 502),
+(1, 'Chat', 'Permission to use chat.', 501),
+(1, 'Supervise Chats', 'Permission to supervise user chats.', 502),
 (1, 'Preloaded Exercises', 'Permission to edit preloaded exercises.', 503),
 (1, 'Transactions', 'Permission to view user transactions.', 504),
 (1, 'Vault', 'Permission to review money inflows and outflows from the app.', 505),
@@ -59,18 +59,19 @@ VALUES
 -- Es un historial, por lo que para inciar van como editados por "Managment" con id = 0
 INSERT INTO wk_permissionsPerRole (permissionid, roleid, editedby, editorid, enabled, lastupdate, `checksum`)
 VALUES 
-(1, 1, 'Managment', 0, 1, NOW(), sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
-(3, 1, 'Managment', 0, 1, NOW(), sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
-(1, 2, 'Managment', 0, 1, NOW(), sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
-(4, 3, 'Managment', 0, 1, NOW(), sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
-(5, 3, 'Managment', 0, 1, NOW(), sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
-(1, 4, 'Managment', 0, 1, NOW(), sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
-(2, 4, 'Managment', 0, 1, NOW(), sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
-(3, 4, 'Managment', 0, 1, NOW(), sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
-(4, 4, 'Managment', 0, 1, NOW(), sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
-(5, 4, 'Managment', 0, 1, NOW(), sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
-(6, 4, 'Managment', 0, 1, NOW(), sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
-(7, 4, 'Managment', 0, 1, NOW(), sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256));
+(6, 1, 'Managment', 0, 1, '2020-03-08 13:42:10', sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
+(1, 2, 'Managment', 0, 1, '2020-03-08 13:42:11', sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
+(1, 3, 'Managment', 0, 1, '2020-03-08 13:42:12', sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
+(3, 3, 'Managment', 0, 1, '2020-03-08 13:42:13', sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
+(4, 4, 'Managment', 0, 1, '2020-03-08 13:42:14', sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
+(5, 4, 'Managment', 0, 1, '2020-03-08 13:42:15', sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
+(1, 5, 'Managment', 0, 1, '2020-03-08 13:42:16', sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
+(2, 5, 'Managment', 0, 1, '2020-03-08 13:42:17', sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
+(3, 5, 'Managment', 0, 1, '2020-03-08 13:42:18', sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
+(4, 5, 'Managment', 0, 1, '2020-03-08 13:42:19', sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
+(5, 5, 'Managment', 0, 1, '2020-03-08 13:42:20', sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
+(6, 5, 'Managment', 0, 1, '2020-03-08 13:42:21', sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256)),
+(7, 5, 'Managment', 0, 1, '2020-03-08 13:42:22', sha2(concat(permissionid,roleid,editedby,editorid,lastupdate),256));
 
 
 -- Datos de wk_ticketCategories
@@ -341,6 +342,49 @@ values ('https://cdn.discordapp.com/attachments/606668298192551941/8397561087962
 insert into wk_picturesPerTracking(trackingid, pictureid)
 values (1,1);
 
+-- //////////////////// NEW
+
+-- Es un historial, por lo que para inciar van como editados por "Managment" con id = 0
+-- Los empleados de marketing y human resources no estan en contacto con la app, tampoco
+-- hay empleados para el rol Coach
+INSERT INTO wk_rolesPerEmployee (employeeid, roleid, editedby, editorid, lastupdate, 
+`checksum`)
+VALUES
+(1, 1, 'Managment', 0, '2020-03-08 13:45:02', sha2(concat(employeeid,roleid,editedby,editorid,lastupdate),256)),
+(2, 2, 'Managment', 0, '2020-03-08 13:45:03', sha2(concat(employeeid,roleid,editedby,editorid,lastupdate),256)),
+(4, 4, 'Managment', 0, '2020-03-08 13:45:04', sha2(concat(employeeid,roleid,editedby,editorid,lastupdate),256)),
+(6, 5, 'Managment', 0, '2020-03-08 13:45:05', sha2(concat(employeeid,roleid,editedby,editorid,lastupdate),256));
+
+
+INSERT INTO wk_chatSessions (chatStatusid, clientid, employeeid, started)
+VALUES
+(4, 3, 2, '2021-01-03 11:10:44'),
+(2, 1, 2, '2021-01-05 10:58:00'),
+(1, 7, 2, '2021-01-06 12:01:32');
+
+
+INSERT INTO wk_messages (chatSessionid, senderid, content, posttime)
+VALUES
+(1, 9, 'Buenos días, hoy intenté hacer el pago para convertirme en premium pero 
+la app me está dando error.', '2021-01-03 11:10:44'),
+(1, 2, 'Hola! Mi nombre es Alejandro, para servirle. ¿Me puede decir cuál es el 
+error que le aparece?', '2021-01-03 11:12:03'),
+(1, 9, 'Hola! Ya arregle el problema, fue que no había puesto la tarjeta xd. Muchas 
+gracias!', '2021-01-03 11:13:38'),
+
+(2, 7, 'Hola, me gustaria hablar con servisio al cliente, es que no se como hacer un 
+workout', '2021-01-05 10:58:00'),
+(2, 2, 'Hola! Mi nombre es Alejandro, para servirle. Para crear un workout, haga click 
+en la opción "Crear Workout" en la sección de workouts.', '2021-01-05 11:00:46'),
+(2, 7, 'gracias', '2021-01-05 13:08:51'),
+
+(3, 13, 'Buenas, ayer ví un anuncio de la app en Instagram y decía que en los Workout 
+van a sacar un work para los tobillos, eso es verdad? No lo encuentro, gracias.', 
+'2021-01-06 12:01:32'),
+(3, 2, 'Hola! Mi nombre es Alejandro, para servirle. En el anuncio decía que se buscan 
+entrenadores para añadir en un futuro ejercicios para los tobillos.', '2021-01-06 13:01:20');
+
+-- //////////////////// THIS 2 //////////////////////////////////////////////////////////////////////////////////////
 -- Recurrence Types
 INSERT INTO wk_recurrenceTypes (name, datepart, valuetoadd)
 VALUES ('Weekly', 'DD', 7);
@@ -355,4 +399,30 @@ INSERT INTO wk_daysPerRecurrencePerWorkout(dayid, recurrencePerWorkoutid)
 VALUES (2, 1), (4, 1), (6, 1),
 	   (2, 2), (3, 2), (4, 2), (5, 2), (6, 2);
 
- 
+-- Datos para Merchants
+INSERT INTO wk_merchants(name, url, enabled, iconUrl)
+VALUES
+('Paypal', 'https://www.paypal.com/', 1, 'https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg'),
+('BAC', 'https://www.baccredomatic.com/', 1, 'https://www.baccredomatic.com/themes/custom/bac_theme/images/logo-small.png'),
+('Banco Nacional', 'https://www.bncr.fi.cr/', 1, 'https://www.bncr.fi.cr/_themesdelivery/Banco-NacionalTheme/assets/images/logo.png');
+
+-- Estado adicional en paymentStatus
+INSERT INTO wk_paymentStatus(name)
+VALUES ('Communication Error');
+
+-- Datos para paymentAttemps
+INSERT INTO wk_paymentAttemps(clientid, paymentStatusid, merchantid, posttime, amount, currentSymbol, errorNumber, 
+	merchantTransNumber, description, paymentTimeStamp, computerName, userName, ipAdress, checkSum)
+VALUES
+(1, 1, 1, NOW(), 5, '$', 0, 426895983, 'Payment Completed Succesfully.', NOW(), 'DeepThought', 
+'saquille.oatmeal', '209.85.231.104', 82582695),
+(2, 2, 2, NOW(), 5,'$', 0, 48494948, 'The transaction was declined due to insufficient funds.',
+NOW(), 'Cerebro', 'HairyPoppins', '207.46.170.123', 47458455),
+(3, 2, 3, NOW(), 5, '$', 0, 33658595, 'Your card was declined, in order to resolve the issue, please contact your bank,',
+NOW(), 'Duotronics', 'cute.as.ducks', '66.220.149.25', 78955182),
+(4, 2, 3, NOW(), 5, '$', 0, 2547965, 'Your credit card is expaired, please update your card.', 
+NOW(), 'MCP', 'YellowSnowman', '208.80.152.2', 69774235),
+(5, 4, 1, NOW(), 5, '%', 0, 1234895, 'Please check your internet connection and try again.',
+NOW(), 'Rasputin', 'BadKarma', '72.247.244.88', 9412567); 
+
+
