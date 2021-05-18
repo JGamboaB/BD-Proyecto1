@@ -18,7 +18,7 @@ export class MySQLRepo {
         this.mysql = require('mysql2');
 
         this.connection = this.mysql.createConnection({
-            host: 'localhost',
+            host: '172.17.0.2',
             user: 'root',
             password: '123456',
             database: 'MyWorkouts'

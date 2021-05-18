@@ -6,6 +6,7 @@ import { ChatsController } from '../controllers/chatscontroller'
 const app = express();
 const log = new Logger();
 
+
 app.get("/:username", (req, res) => {
 
     var username = req.params.username
