@@ -9,8 +9,8 @@ import retrofit2.http.POST
 interface SimpleApi {
 
     // GET API  ===
-    @GET("posts/1")
-    //@GET("workouts/:shaquille.oatmeal")
+    //@GET("posts/1")
+    @GET("workouts/:shaquille.oatmeal")
     suspend fun getPost(): Response<Post>
 
     // POST API ===

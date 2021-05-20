@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         val viewModelFactory = MainViewModelFactory(repository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
 
+        /*
         // POST ===
         val myPost = Post(2, 2, "Prueba", "Flyway k7")
         viewModel.pushPost(myPost)
@@ -36,30 +37,33 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, response.code(), Toast.LENGTH_SHORT).show()
             }
         })
+        */
 
-        /*
+
         // GET  ===
         viewModel.getPost()
         viewModel.myResponse.observe(this, Observer { response ->
             if(response.isSuccessful){
 
+                /*
                 Log.d("Response", response.body()?.userId.toString())
                 Log.d("Response", response.body()?.id.toString())
                 textView.text = response.body()?.title!!
                 //Log.d("Response", response.body()?.title!!)
                 Log.d("Response", response.body()?.body!!)
+                 */
 
-                /*
+
                 Log.d("Response", response.body()?.Name.toString())
                 Log.d("Response", response.body()?.Creation_Date.toString())
                 textView.text = response.body()?.Name.toString()
-                 */
+
 
             }else{
                 Log.d("Response", response.errorBody().toString())
                 textView.text = response.code().toString()
             }
         })
-         */
+
     }
 }
