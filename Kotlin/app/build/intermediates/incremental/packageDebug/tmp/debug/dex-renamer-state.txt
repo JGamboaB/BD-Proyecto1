@@ -1,4 +1,4 @@
-#Tue May 18 15:55:15 CST 2021
+#Wed May 19 22:58:11 CST 2021
 base.0=C\:\\Users\\david\\Desktop\\Tareas David\\TEC\\Semestre 3\\Base de Datos I\\Proyectos\\Proyecto 1\\modelos\\Kotlin\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

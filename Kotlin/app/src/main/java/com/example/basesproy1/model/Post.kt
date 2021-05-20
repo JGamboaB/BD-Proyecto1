@@ -9,9 +9,10 @@ data class Post (
     val title: String,
     val body: String
 
+
     /*
     @SerializedName("Creation Date")
     val Name: String,
     val Creation_Date: String
-     */
+    */
 )
