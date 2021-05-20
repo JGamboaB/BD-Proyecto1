@@ -699,7 +699,7 @@ CREATE TABLE IF NOT EXISTS `MyWorkouts`.`wk_exercises` (
   `focusid` TINYINT NOT NULL,
   `difficultyid` TINYINT NOT NULL,
   `equipmentid` INT NULL,
-  `steps` VARCHAR(250) NOT NULL,
+  `steps` VARCHAR(300) NOT NULL,
   `description` VARCHAR(100) NOT NULL,
   `recommendedReps` TINYINT NOT NULL,
   `recommendedSets` TINYINT NOT NULL,

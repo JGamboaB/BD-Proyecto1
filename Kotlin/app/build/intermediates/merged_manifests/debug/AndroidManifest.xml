@@ -19,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:testOnly="true"
-        android:theme="@style/Theme.Basesproy1" >
+        android:theme="@style/Theme.Basesproy1"
+        android:usesCleartextTraffic="true" >
         <activity android:name="com.example.basesproy1.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
