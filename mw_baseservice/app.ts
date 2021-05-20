@@ -20,6 +20,7 @@ private middleware(): void {
 private routes(): void {
     this.express.use('/api', Routes);
     this.express.use('*', (req, res) => {
+        console.log(req.originalUrl);
         res.send("Request inválido");
         });
     }

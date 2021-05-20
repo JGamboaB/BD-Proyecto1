@@ -31,4 +31,10 @@ export class ChatsController
         const sqlrepo = new MySQLRepo();
         return sqlrepo.callStoredProcedure(pStoredProcedure, pParamList);
     }
+
+    public getChat(pStoredProcedure: string, pParamList: Array<any>) : Promise<Response>
+    {
+        const sqlrepo = new MySQLRepo();
+        return sqlrepo.callStoredProcedure(pStoredProcedure, pParamList);
+    }
 }

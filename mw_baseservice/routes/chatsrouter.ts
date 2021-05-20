@@ -7,7 +7,7 @@ const app = express();
 const log = new Logger();
 
 
-app.get("/:username", (req, res) => {
+app.get("/list/:username", (req, res) => {
 
     var username = req.params.username
 
@@ -26,5 +26,27 @@ app.get("/:username", (req, res) => {
     });
 
 });
+
+app.get("/chat/:id", (req, res) => {
+
+    var id = req.params.id
+
+    var idChat: number = +(id.slice(1));
+
+    console.log(idChat);
+
+    var paramList: number[] = [idChat];
+
+    ChatsController.getInstance().getChat("wk_consultChat", paramList)
+    .then((data)=>{
+        res.json(data);
+    })
+    .catch((err)=>{
+        log.error(err);
+        return "";
+    });
+
+});
+
 
 export { app as chatsrouter };

@@ -5,30 +5,25 @@ import { Logger } from '../common'
 
 export class MySQLRepo {
     private log: Logger
-    private mysql: any
-    private connection: any
 
     constructor()
     {
-        this.connect()
     }
 
-    public connect()
+    public async callStoredProcedure(pStoredProcedure: string, pParamList: Array<any>) : Promise<Response>
     {
-        this.mysql = require('mysql2');
+        const mysql = require('mysql2/promise');
 
-        this.connection = this.mysql.createConnection({
+        const connection = await mysql.createConnection({
             host: '172.17.0.2',
             user: 'root',
             password: '123456',
             database: 'MyWorkouts'
           });
-    }
 
-    public callStoredProcedure(pStoredProcedure: string, pParamList: Array<any>) : Promise<Response>
-    {
-        const result = this.connection.promise().query("CALL " + pStoredProcedure + "(?)", pParamList)
-        return result;
+        const result = await connection.query("CALL " + pStoredProcedure + "(?)", pParamList)
+
+        return result[0][0];
     }
 }
 

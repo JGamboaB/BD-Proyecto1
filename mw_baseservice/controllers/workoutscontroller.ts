@@ -31,4 +31,10 @@ export class WorkoutsController
         const sqlrepo = new MySQLRepo();
         return sqlrepo.callStoredProcedure(pStoredProcedure, pParamList);
     }
+
+    public getWorkout(pStoredProcedure: string, pParamList: Array<any>) : Promise<Response>
+    {
+        const sqlrepo = new MySQLRepo();
+        return sqlrepo.callStoredProcedure(pStoredProcedure, pParamList);
+    }
 }

@@ -22,6 +22,10 @@ var ChatsController = /** @class */ (function () {
         var sqlrepo = new mysqlrepository_1.MySQLRepo();
         return sqlrepo.callStoredProcedure(pStoredProcedure, pParamList);
     };
+    ChatsController.prototype.getChat = function (pStoredProcedure, pParamList) {
+        var sqlrepo = new mysqlrepository_1.MySQLRepo();
+        return sqlrepo.callStoredProcedure(pStoredProcedure, pParamList);
+    };
     return ChatsController;
 }());
 exports.ChatsController = ChatsController;

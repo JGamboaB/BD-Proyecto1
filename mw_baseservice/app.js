@@ -16,6 +16,7 @@ var App = /** @class */ (function () {
     App.prototype.routes = function () {
         this.express.use('/api', routes_1["default"]);
         this.express.use('*', function (req, res) {
+            console.log(req.originalUrl);
             res.send("Request inválido");
         });
     };

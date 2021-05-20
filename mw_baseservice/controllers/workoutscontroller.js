@@ -22,6 +22,10 @@ var WorkoutsController = /** @class */ (function () {
         var sqlrepo = new mysqlrepository_1.MySQLRepo();
         return sqlrepo.callStoredProcedure(pStoredProcedure, pParamList);
     };
+    WorkoutsController.prototype.getWorkout = function (pStoredProcedure, pParamList) {
+        var sqlrepo = new mysqlrepository_1.MySQLRepo();
+        return sqlrepo.callStoredProcedure(pStoredProcedure, pParamList);
+    };
     return WorkoutsController;
 }());
 exports.WorkoutsController = WorkoutsController;
