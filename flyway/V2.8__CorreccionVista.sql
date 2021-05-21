@@ -1,3 +1,4 @@
+DROP VIEW IF EXISTS wk_execiseInformation;
 CREATE 
     ALGORITHM = UNDEFINED 
     DEFINER = `root`@`%` 
