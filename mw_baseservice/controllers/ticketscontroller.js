@@ -22,6 +22,10 @@ var TicketsController = /** @class */ (function () {
         var sqlrepo = new mysqlrepository_1.MySQLRepo();
         return sqlrepo.callStoredProcedure(pStoredProcedure, pParamList);
     };
+    TicketsController.prototype.changeTicketStatus = function (pStoredProcedure, pParamList) {
+        var sqlrepo = new mysqlrepository_1.MySQLRepo();
+        return sqlrepo.callRegisterPayment(pParamList);
+    };
     return TicketsController;
 }());
 exports.TicketsController = TicketsController;

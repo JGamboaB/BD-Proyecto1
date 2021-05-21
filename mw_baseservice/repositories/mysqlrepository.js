@@ -63,6 +63,30 @@ var MySQLRepo = /** @class */ (function () {
             });
         });
     };
+    MySQLRepo.prototype.callRegisterPayment = function (pParamList) {
+        return __awaiter(this, void 0, void 0, function () {
+            var mysql, connection, result;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        mysql = require('mysql2/promise');
+                        return [4 /*yield*/, mysql.createConnection({
+                                host: '172.17.0.2',
+                                user: 'root',
+                                password: '123456',
+                                database: 'MyWorkouts'
+                            })];
+                    case 1:
+                        connection = _a.sent();
+                        console.log(pParamList);
+                        return [4 /*yield*/, connection.query("CALL wk_registerPayment(?,?,?)", pParamList)];
+                    case 2:
+                        result = _a.sent();
+                        return [2 /*return*/, result[0][0]];
+                }
+            });
+        });
+    };
     return MySQLRepo;
 }());
 exports.MySQLRepo = MySQLRepo;
